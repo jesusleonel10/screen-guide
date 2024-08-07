@@ -1,0 +1,106 @@
+.search-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    
+    &__overlay {
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom right, rgb(2, 131, 145, .92), rgb(145, 200, 206, .92));
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      z-index: 3;
+      pointer-events: none;
+
+    }
+    
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 0;
+      grid-column: 1;
+      grid-row: 1;
+      z-index: 3;
+      h2 {
+        color: #fff;
+        font-family: 'Josefin Sans', sans-serif;
+        font-weight: 300;
+        font-size: 3.5em;
+        text-transform: uppercase;
+        text-align: center;
+        text-wrap: balance;
+        text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
+      }
+    }
+
+    &__input { 
+      position: relative;
+      grid-column: 1;
+      grid-row: 2;
+      z-index: 3;
+      align-self: self-start;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+      }
+      
+      input {
+        &[type=text] {
+          all: unset;
+          background-color: #fff;
+          width: 80%;
+          height: 3rem;
+          font-size: 1.2rem;
+          padding: 0 1rem;
+          border-radius: 2rem;
+          box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        &[type=submit] {
+          all: unset;
+          background: linear-gradient(to bottom right, rgb(120, 61, 255), rgb(61, 250, 250));
+          width: 12rem;
+          height: 4rem;
+          color: #fff;
+          font-weight: bold;
+          font-size: 1rem;
+          text-align: center;
+          border-radius: 2rem;
+          box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+          transition: background .5s;
+    
+          &:hover {
+            filter: brightness(120%);
+          }
+        }
+      }
+    }
+  }
+  
+  /* Ocultar labels sin perder accesibilidad*/
+  
+  .hidden-visually {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  
+  @media screen and (max-width: 800px) {
+    .search-container__title {
+      padding: 5rem 0 2.5rem;
+      font-size: 10px;
+    }
+  }
+  

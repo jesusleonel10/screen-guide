@@ -1,0 +1,45 @@
+.cards-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 2rem auto 4rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    gap: 2rem;
+}
+  
+.pages {
+    background: rgb(2, 131, 145);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-family: "Open Sans", sans-serif;
+    padding: .8rem 0;
+  
+    button {
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 50px;
+      width: 200px;
+      background: rgba(1, 32, 78, 0.651);
+      color: #fff;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: .3s ease all;
+  
+      &:hover {
+        background: rgb(55, 181, 182);
+      }
+    }
+  }
+
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}

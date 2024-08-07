@@ -1,0 +1,40 @@
+.watch_provider {
+    // grid-row: 2;
+    // grid-column: 3;
+    // grid-column-start: 3;
+
+    .loading_provider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .card_provider {
+        width: 4rem;
+        height: 4rem;
+        box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+        img {
+            width: 4rem;
+            height: 4rem;
+            vertical-align: center;
+            border-radius: .5rem;
+        }
+    }
+
+    .no_providers {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: .8rem;
+        font-size: .9rem;
+    
+    }
+}
+
+// @media screen and (min-width: 1200px) {
+//     .watch_provider {
+//         grid-row: 1;
+//         grid-column: 1;
+//     }
+// }

@@ -1,0 +1,50 @@
+.card_profile {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    width: 6.875rem;
+    min-height: 10rem;
+    max-height: 11rem;
+    gap: .5rem;
+    padding: .5rem;
+    background: #d2d8d2;
+    border-radius: .5rem;
+    &__photo {
+        border-radius: 50%;
+        width: 5.5rem;
+        height: 5.5rem;
+        background: #ccc;
+        img {
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+    &__details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h3 {
+            text-align: center;
+            font-size: .9rem;
+            font-weight: 500;
+            height: 2rem;  /* Establece una altura fija de 2 líneas */
+            line-height: 1rem;  /* Ajusta la altura de línea para que quepa el texto en 2 líneas */
+            overflow: hidden;  /* Oculta cualquier contenido que exceda las 2 líneas */
+            text-overflow: ellipsis;  /* Agrega puntos suspensivos al final si el texto es demasiado largo */
+
+        }
+        h4 {
+            text-align: center;
+            font-size: .8rem;
+            font-weight: 300;
+            height: 2rem;  /* Establece una altura fija de 2 líneas */
+            line-height: 1rem;  /* Ajusta la altura de línea para que quepa el texto en 2 líneas */
+            overflow: hidden;  /* Oculta cualquier contenido que exceda las 2 líneas */
+            text-overflow: ellipsis;
+        }
+    }
+}
