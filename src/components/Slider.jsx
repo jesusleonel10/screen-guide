@@ -58,7 +58,7 @@ const Slider = ({trending, timeWindow, setTimeWindow}) => {
       </div>
       <ul className='slider-container__carousel'>
         {
-         trending.slice(0, 6).map((item) => {
+         trending?.slice(0, 6)?.map((item) => {
           return <ItemSlider
              key={item.id}
              id={item.id}

@@ -15,7 +15,7 @@ const List = ({category, setCategory}) => {
     //Estados locales
     const [page, setPage] = useState(1);
     //Custom hook para hacer la consulta a la API
-    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediaType}/${category}?language=es-MX&page=${page}`)
+    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediaType}/${category}?language=es-MX&page=${page}`, mediaType)
 
 
     const arrCardLoading = [1,2,3,4,5,6,7,8]
@@ -37,19 +37,20 @@ const List = ({category, setCategory}) => {
                         </Fragment>
                     ))
             :
-            data?.results?.map((element) => {
-                return <Card
-                    id={element.id}
-                    key={element.id}
-                    poster={element.poster_path} 
-                    title={element.name || element.title}
-                    release={element.release_date || element.first_air_date}
-                    runtime={element.runtime}
-                    overview={element.overview}
-                    votes={element.vote_average}
-                    votes_count={element.vote_count}
-                />
-                })
+                data?.results?.map((element) => {
+                    return <Card
+                        id={element.id}
+                        key={element.id}
+                        poster={element.poster_path} 
+                        title={element.name || element.title}
+                        release={element.release_date || element.first_air_date}
+                        runtime={element.runtime}
+                        overview={element.overview}
+                        votes={element.vote_average}
+                        votes_count={element.vote_count}
+                    />
+                    })
+
             }
             </div>
             <div className="pages">

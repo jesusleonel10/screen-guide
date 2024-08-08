@@ -4,6 +4,7 @@ import Search from './components/Search';
 import Slider from './components/Slider';
 import List from './components/List'
 import About from './components/About';
+import useFetchData from './hooks/useFetchData';
 import { ContextQuery } from './context/contextQuery';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
@@ -18,40 +19,14 @@ function App() {
   const location = useLocation()
   //Definir el filtro de la busqueda entre popular, mejores valorados etc...
   const [category, setCategory] = useState('popular');
-  //Estado para la consulta de las peliculas y series en tendencia
-  const [trending, setTrending] = useState([]);
+
   //Estado timewindows para hacer la consulta de tendencias entre dia y semana
   const [timeWindow, setTimeWindow] = useState('day');
 
+  const { data } = useFetchData(`https://api.themoviedb.org/3/trending/all/${timeWindow}?&language=es-MX`, timeWindow)
+
+  
   useEffect(() => {
-    const loadTrending = async() => {
-      const url = 'https://api.themoviedb.org/3/trending/all/'
-
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZTQ5NDE0YTUyNmIyMzU0Mzk4OTczNWJhMjFhZTNkNSIsInN1YiI6IjY2NGI3Njg5MTMxY2Y2YzE2ODdjZTM3NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.d2VJdOe_Mdkicyrlm_CGZREryZU8xC23wr0K_QAdIF8'
-        }
-      };
-
-        try {
-            const response = await fetch(`${url}${timeWindow}?&language=es-MX`, options)
-            if(response.status === 200) {
-                const data = await response.json()
-                setTrending(data.results)
-            } else if (response.status === 401){
-                console.log('Llave incorrecta');
-            } else if(response.status === 404){
-                console.log('La consulta no existe');
-            } else {
-                console.log('Hubo un error');
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     const obtenerRuta = () => {
       const { pathname } = location
 
@@ -77,8 +52,7 @@ function App() {
     }
 
     obtenerRuta()
-    loadTrending()
-  }, [location, setMediaType, setTrending, timeWindow]);
+  }, [location, setMediaType, timeWindow]);
 
   return (
     <>
@@ -89,10 +63,10 @@ function App() {
         <Route path='/' element={
           <main>
             <Search 
-              trending={trending}
+              trending={data.results}
             />
             <Slider 
-              trending={trending}
+              trending={data.results}
               timeWindow={timeWindow}
               setTimeWindow={setTimeWindow}
             />

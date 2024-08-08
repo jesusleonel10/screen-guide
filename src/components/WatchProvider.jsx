@@ -10,7 +10,7 @@ const WatchProvider = ({idQuery, mediatype}) => {
     const [region, setRegion] = useState('');
     const [regionProvider, setRegionProvider] = useState({});
 
-    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediatype}/${idQuery}/watch/providers`)
+    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediatype}/${idQuery}/watch/providers`, mediatype)
 
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const WatchProvider = ({idQuery, mediatype}) => {
     }
     
     selectCountry(data.results)
-}, [idQuery, mediatype, region, data])
+}, [region, data])
 
     return (
         <>

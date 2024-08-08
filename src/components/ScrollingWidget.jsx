@@ -65,7 +65,7 @@ const ScrollingWidget = ({children, showHeader, textHeader, region, flag, idWidg
             });
         });
     
-        itemsScrolling.addEventListener('scroll', (e) => {
+        itemsScrolling.addEventListener('scroll', () => {
             const position = itemsScrolling.scrollLeft;
             if (position === 0) {
             scrollLeftButton.disabled = true;

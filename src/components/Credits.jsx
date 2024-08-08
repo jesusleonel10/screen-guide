@@ -8,7 +8,7 @@ import './../scss/Credits.scss'
 
 const Credits = ({idQuery, mediatype}) => {
     //Custom hook para hacer la consulta a la API
-    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediatype}/${idQuery}/${mediatype === 'tv' ? 'aggregate_credits' : 'credits'}?language=es-MX`)
+    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediatype}/${idQuery}/${mediatype === 'tv' ? 'aggregate_credits' : 'credits'}?language=es-MX`, mediatype)
 
     return (
         <>

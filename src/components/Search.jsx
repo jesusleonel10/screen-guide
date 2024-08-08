@@ -13,18 +13,20 @@ const Search = ({trending}) => {
     const [shuffleValue, setshuffleValue] = useState([]);
     //Definir el value de lo que se escribe en el input text para hacer la busqueda
     const [inputSearch, setInputSearch] = useState('');
-
     const image_per_row = 7;
     const rows = 5;
+    const duration = 15000;
     
     useEffect(() => {
-        const image = trending.slice(0, 12).map((poster) => poster.poster_path);
-        const duration = 15000;
-        const shuffle = (arr) => [...arr].sort( () => .5 - Math.random() );
-        const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-        
-        setshuffleValue(shuffle(image))
-        setRandomValue(random(duration - 5000, duration + 5000))
+        if(trending) {
+            const image = trending.slice(0, 12).map((poster) => poster.poster_path);
+            
+            const shuffle = (arr) => [...arr].sort( () => .5 - Math.random() );
+            const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+            
+            setshuffleValue(shuffle(image))
+            setRandomValue(random(duration - 5000, duration + 5000))
+        }
     }, [trending]);
 
     const handleChange = (setState) => (event) => {
@@ -67,9 +69,9 @@ const Search = ({trending}) => {
             </div>
             <div className='search-container__items-scrolling items-scrolling-infinite-list'>
 
-                {[...new Array(rows)].map((_, i) => (
+                {[...new Array(rows)]?.map((_, i) => (
                     <InfiniteScroll key={i} duration={randomValue} reverse={i % 2}>
-                    {shuffleValue.slice(0, image_per_row).map(tag => (
+                    {shuffleValue?.slice(0, image_per_row)?.map(tag => (
                         <Tag poster={tag} key={tag}/>
                     ))}
                     </InfiniteScroll>

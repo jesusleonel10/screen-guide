@@ -11,7 +11,7 @@ import { ContextQuery } from '../context/contextQuery'
 const Details = () => {
     const {mediaType, idQuery} = useContext(ContextQuery)
     //Custom hook para hacer la consulta a la API
-    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediaType}/${idQuery}?language=es-MX`)
+    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediaType}/${idQuery}?language=es-MX`, mediaType)
 
     return (  
         <>

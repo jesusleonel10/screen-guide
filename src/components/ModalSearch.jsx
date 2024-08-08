@@ -10,7 +10,7 @@ const ModalSearch = ({inputSearch, setInputSearch}) => {
     //Estado local para las paginas y los resultados filtrados
     const [listQuery, setListQuery] = useState([]);
     const [page, setPage] = useState(1);
-    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/search/multi?query=${inputSearch}&include_adult=false&language=es-MX&page=${page}`)
+    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/search/multi?query=${inputSearch}&include_adult=false&language=es-MX&page=${page}`, inputSearch)
     
     useEffect(() => {
         //Filtro los datos para que solo sean películas y series de tv
