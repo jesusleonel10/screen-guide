@@ -2,11 +2,17 @@ import {useState, useEffect} from 'react'
 import Loading from './Loading'
 import ItemSearch from './ItemSearch'
 import useFetchData from '../hooks/useFetchData'
+import Details from './Details'
 
 import './../scss/ModalSearch.scss'
 
 
 const ModalSearch = ({inputSearch, setInputSearch}) => {
+
+    const [showDetails, setShowDetails] = useState(false);
+    const [id, setId] = useState('');
+    const [media, setMedia] = useState('');
+
     //Estado local para las paginas y los resultados filtrados
     const [listQuery, setListQuery] = useState([]);
     const [page, setPage] = useState(1);
@@ -26,6 +32,7 @@ const ModalSearch = ({inputSearch, setInputSearch}) => {
     const handleChange = (setState) => (event) => {
         setState(event.target.value)
     }
+    console.log(id, media);
     return (
         <>
             <div className="container-modal__search">
@@ -58,6 +65,9 @@ const ModalSearch = ({inputSearch, setInputSearch}) => {
                                         year={item.release_date || item.first_air_date}
                                         votes={item.vote_average}
                                         votesCount={item.vote_count}
+                                        setId={setId}
+                                        setMedia={setMedia}
+                                        setShowDetails={setShowDetails}
                                     />
                             })
                             }
@@ -75,7 +85,14 @@ const ModalSearch = ({inputSearch, setInputSearch}) => {
                         <button onClick={() => page < 1000 ? setPage(page + 1) : false}>Siguente</button>
                     </div>
                 </div>
-                    
+                {showDetails ?
+                    <Details 
+                        id={id}
+                        media={media}
+                    />
+                :
+                    null
+                }
         </>
     );
 }

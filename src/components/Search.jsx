@@ -9,6 +9,7 @@ import './../scss/Search.scss'
 
 const Search = ({trending}) => {
     const {modal, setModal} = useContext(ContextQuery)
+
     const [randomValue, setRandomValue] = useState(0);
     const [shuffleValue, setshuffleValue] = useState([]);
     //Definir el value de lo que se escribe en el input text para hacer la busqueda
@@ -78,8 +79,8 @@ const Search = ({trending}) => {
                 ))}
             </div>
         </div>
-    {
-            //Al cambiar el type cambio el componente dentro de modal
+            
+            {//Al cambiar el type cambio el componente dentro de modal
             modal.type === 'search' ?
             <Modal header='Buscar Película o Serie de TV'>
                 <ModalSearch 
@@ -87,8 +88,8 @@ const Search = ({trending}) => {
                     setInputSearch={setInputSearch}
                 />
             </Modal>
-        : null    
-    }
+            : null}
+            
     </>
     )
 }

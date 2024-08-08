@@ -5,17 +5,15 @@ import Votes from './Votes'
 import { ContextQuery } from '../context/contextQuery';
 
 
-const Card = ({id, poster, title, votes, votes_count, release, overview}) => {
-    const {modal, setModal, setIdQuery} = useContext(ContextQuery)
-
+const Card = ({id, poster, title, votes, votes_count, release, overview, setId}) => {
+    const {modal, setModal} = useContext(ContextQuery)
 
     const handleClick = () => {
         //Creamos una copia del estado global, luego cambiamos la propiedad type y por actualizamos el
         const updateModal = {...modal}
         updateModal.type = 'details'
         setModal(updateModal)
-
-        setIdQuery(id)
+        setId(id)
     }
 
     return (

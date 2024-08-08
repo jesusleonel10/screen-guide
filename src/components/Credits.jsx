@@ -41,7 +41,7 @@ const Credits = ({idQuery, mediatype}) => {
                                     key={index}
                                     photo={item.profile_path}
                                     name={item.name}
-                                    character={item.roles.map((c) => c.character)}
+                                    character={item?.roles?.map((c) => c.character)}
                                 />
                             })
                         }
@@ -53,20 +53,20 @@ const Credits = ({idQuery, mediatype}) => {
                         >
                         {
                             mediatype === 'tv' ?
-                            data?.crew?.filter((item) => item.jobs.some((element) => element.job === 'Director' || element.job === 'Writer'))
-                            .slice(0, 12)
-                            .map((item, index) => {
+                            data?.crew?.filter((item) => item.jobs?.some((element) => element.job === 'Director' || element.job === 'Writer'))
+                            ?.slice(0, 12)
+                            ?.map((item, index) => {
                                 return <Profile
                                     key={index}
                                     photo={item.profile_path}
                                     name={item.name}
-                                    job={item.jobs.map((i) => i.job)}
+                                    job={item?.jobs?.map((i) => i.job)}
                                 />
                             })
                             :
                             data?.crew?.filter((item) => item.job === 'Director' || item.job === 'Writer')
-                            .slice(0, 12)
-                            .map((item, index) => {
+                            ?.slice(0, 12)
+                            ?.map((item, index) => {
                                 return <Profile
                                     key={index}
                                     photo={item.profile_path}

@@ -1,29 +1,42 @@
-import {useState, useContext, Fragment} from 'react'
+import {useState, useContext, Fragment, useEffect} from 'react'
 import Filters from "./Filters";
 import Details from './Details';
 import Card from "./Card"
 import { ContextQuery } from '../context/contextQuery';
 import Modal from './Modal';
 import useFetchData from '../hooks/useFetchData';
+import { useLocation } from 'react-router-dom';
+import formatLocation from '../functions/formatLocation';
 
 import styled from 'styled-components';
 import './../scss/List.scss'
 
-const List = ({category, setCategory}) => { 
+const List = () => { 
     //Estado global
-    const {mediaType, modal} = useContext(ContextQuery)
+    const {modal} = useContext(ContextQuery)
     //Estados locales
     const [page, setPage] = useState(1);
+    const [id, setId] = useState('');
+    const [media, setMedia] = useState('');
+    //Definir el filtro de la busqueda entre popular, mejores valorados etc...
+    const [category, setCategory] = useState('popular');
+    //Estado para obtener la ruta actual
+    const location = useLocation()
     //Custom hook para hacer la consulta a la API
-    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediaType}/${category}?language=es-MX&page=${page}`, mediaType)
-
+    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${media}/${category}?language=es-MX&page=${page}`, media)
 
     const arrCardLoading = [1,2,3,4,5,6,7,8]
+
+    useEffect(() => {
+      setMedia(formatLocation(location.pathname))
+    }, [location]);
+
+
     return (
             <>
                 <Filters 
                     setPage={setPage}
-                    mediatype={mediaType}
+                    mediatype={media}
                     setCategory={setCategory}
                 />
                 <div className='cards-container'>
@@ -48,6 +61,7 @@ const List = ({category, setCategory}) => {
                         overview={element.overview}
                         votes={element.vote_average}
                         votes_count={element.vote_count}
+                        setId={setId}
                     />
                     })
 
@@ -67,7 +81,10 @@ const List = ({category, setCategory}) => {
                 //Al cambiar el type cambio el componente dentro de modal
                 modal.type === 'details' ?
                 <Modal header='Información' >
-                    <Details />
+                    <Details 
+                        id={id}
+                        media={media}
+                    />
                 </Modal>
                 : null
             }

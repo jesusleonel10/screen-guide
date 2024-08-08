@@ -1,10 +1,7 @@
-import {useContext} from 'react';
 import { NavLink } from 'react-router-dom';
-import { ContextQuery } from '../context/contextQuery';
 import './../scss/Header.scss'
 
-const Header = ({setCategory}) => {
-    const {setMediaType} = useContext(ContextQuery)
+const Header = () => {
 
     const openMenuMobile = (idSidebar, idButton, option) => {
         const sidebar = document.querySelector(idSidebar);
@@ -18,13 +15,7 @@ const Header = ({setCategory}) => {
         }
     }
 
-    const handleClick = (e) => {
-        if(e.target.dataset.link === 'movie') {
-            setMediaType('movie')
-        } else if (e.target.dataset.link === 'tv') {
-            setMediaType('tv')
-        }
-        setCategory('popular')
+    const handleClick = () => {
         openMenuMobile('#sidebar', '#button-menu', false)
     }
 
@@ -44,10 +35,10 @@ const Header = ({setCategory}) => {
 
                 <div id="sidebar" className="sidebar">
                     <ul>
-                        <li><NavLink to="/" className="sidebar__items" onClick={(e) => handleClick(e)}>Inicio</NavLink></li>
-                        <li><NavLink to="/movies" className="sidebar__items" data-link='movie' onClick={(e) => handleClick(e)}>Películas</NavLink></li>
-                        <li><NavLink to="/tv-shows" className="sidebar__items" data-link='tv' onClick={(e) => handleClick(e)}>Series de TV</NavLink></li>
-                        <li><NavLink to="/acerca-de" className="sidebar__items" onClick={(e) => handleClick(e)}>Acerca de</NavLink></li>
+                        <li><NavLink to="/" className="sidebar__items" onClick={() => handleClick()}>Inicio</NavLink></li>
+                        <li><NavLink to="/movies" className="sidebar__items" data-link='movie' onClick={() => handleClick()}>Películas</NavLink></li>
+                        <li><NavLink to="/tv-shows" className="sidebar__items" data-link='tv' onClick={() => handleClick()}>Series de TV</NavLink></li>
+                        <li><NavLink to="/acerca-de" className="sidebar__items" onClick={() => handleClick()}>Acerca de</NavLink></li>
                     </ul>
                 </div>
 

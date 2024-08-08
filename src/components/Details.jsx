@@ -1,4 +1,3 @@
-import {useContext} from 'react'
 import './../scss/Details.scss'
 import formatDate from '../functions/formatDate'
 import formatTime from '../functions/formatTime'
@@ -6,13 +5,10 @@ import useFetchData from '../hooks/useFetchData'
 import WatchProvider from './WatchProvider'
 import Credits from './Credits'
 import Loading from './Loading'             
-import { ContextQuery } from '../context/contextQuery'
 
-const Details = () => {
-    const {mediaType, idQuery} = useContext(ContextQuery)
+const Details = ({id, media}) => {
     //Custom hook para hacer la consulta a la API
-    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediaType}/${idQuery}?language=es-MX`, mediaType)
-
+    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${media}/${id}?language=es-MX`, media)
     return (  
         <>
         {loading ?
@@ -40,7 +36,7 @@ const Details = () => {
                     </div>
                     <div className="runtime">
                             {
-                                mediaType === 'movie' ?
+                                media === 'movie' ?
                                 <>
                                     <h3>Duración:</h3><p>{formatTime(data.runtime)}</p>
                                 </>
@@ -69,12 +65,12 @@ const Details = () => {
                 </div>
                 <div className='widgets'>
                     <Credits 
-                        idQuery={idQuery}
-                        mediatype={mediaType}
+                        idQuery={id}
+                        mediatype={media}
                     />
                     <WatchProvider 
-                        idQuery={idQuery}
-                        mediatype={mediaType}
+                        idQuery={id}
+                        mediatype={media}
                     />
                 </div>
             </div>
