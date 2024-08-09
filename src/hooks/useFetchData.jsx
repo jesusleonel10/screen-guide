@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import showLoading from "../functions/showLoading";
 
 const useFetchData = (url, flag) => {
     //Definimos los estados para guardar los datos de la API, la flag para el loading y guardar el error en caso de que ocurra
@@ -40,7 +39,7 @@ const useFetchData = (url, flag) => {
             setError(error)
         //Paso la flag del loading a false por que se a terminado la peticion
         } finally {
-            showLoading(800, setLoading, false)
+            setLoading(false)
         }
      };
      fetchData();
