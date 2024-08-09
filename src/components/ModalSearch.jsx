@@ -8,7 +8,7 @@ import './../scss/ModalSearch.scss'
 
 
 const ModalSearch = ({inputSearch, setInputSearch}) => {
-
+    //Esta flag para poder mostrar o no el Details dentro del modal que ya esta renderizado
     const [showDetails, setShowDetails] = useState(false);
     const [id, setId] = useState('');
     const [media, setMedia] = useState('');
@@ -32,10 +32,15 @@ const ModalSearch = ({inputSearch, setInputSearch}) => {
     const handleChange = (setState) => (event) => {
         setState(event.target.value)
     }
-    console.log(id, media);
     return (
         <>
-            <div className="container-modal__search">
+            {showDetails ?
+                    <Details 
+                        id={id}
+                        media={media}
+                    />
+                :
+                <div className="container-modal__search">
                     <div className="input">
                         <form action="" >
                             <label className='hidden-visually' htmlFor="search">Buscar</label>
@@ -85,14 +90,7 @@ const ModalSearch = ({inputSearch, setInputSearch}) => {
                         <button onClick={() => page < 1000 ? setPage(page + 1) : false}>Siguente</button>
                     </div>
                 </div>
-                {showDetails ?
-                    <Details 
-                        id={id}
-                        media={media}
-                    />
-                :
-                    null
-                }
+            }
         </>
     );
 }

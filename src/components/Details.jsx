@@ -13,7 +13,7 @@ const Details = ({id, media}) => {
         <>
         {loading ?
             <Loading />
-            :
+            : data ?
             <div className='container-modal__content'>
                 <div className='poster'>
                     <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="Poster of the movie" />
@@ -74,6 +74,7 @@ const Details = ({id, media}) => {
                     />
                 </div>
             </div>
+            : null
         }
         </>
     );
