@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from 'react';
 import ItemSlider from './ItemSlider';
-import Details from './Details';
+import Info from './Info';
 import { ContextQuery } from '../context/contextQuery';
 
 import './../scss/Slider.scss'
@@ -88,7 +88,7 @@ const Slider = ({trending, timeWindow, setTimeWindow}) => {
         {
           modal.type === 'details' ?
           <Modal header='Información'>
-              <Details 
+              <Info 
                 id={id}
                 media={media}
               />

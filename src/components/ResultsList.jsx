@@ -2,12 +2,12 @@ import {useState, useEffect} from 'react'
 import Loading from './Loading'
 import ItemSearch from './ItemSearch'
 import useFetchData from '../hooks/useFetchData'
-import Details from './Details'
+import Info from './Info'
 
 import './../scss/ModalSearch.scss'
 
 
-const ModalSearch = ({inputSearch, setInputSearch}) => {
+const ResultsList = ({inputSearch, setInputSearch}) => {
     //Esta flag para poder mostrar o no el Details dentro del modal que ya esta renderizado
     const [showDetails, setShowDetails] = useState(false);
     const [id, setId] = useState('');
@@ -35,7 +35,7 @@ const ModalSearch = ({inputSearch, setInputSearch}) => {
     return (
         <>
             {showDetails ?
-                    <Details 
+                    <Info 
                         id={id}
                         media={media}
                     />
@@ -95,4 +95,4 @@ const ModalSearch = ({inputSearch, setInputSearch}) => {
     );
 }
  
-export default ModalSearch;
+export default ResultsList;

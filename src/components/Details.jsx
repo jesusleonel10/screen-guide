@@ -1,35 +1,24 @@
-import './../scss/Details.scss'
-import formatDate from '../functions/formatDate'
-import formatTime from '../functions/formatTime'
-import useFetchData from '../hooks/useFetchData'
-import WatchProvider from './WatchProvider'
-import Credits from './Credits'
-import Loading from './Loading'             
+import formatDate from "../functions/formatDate";
+import formatTime from "../functions/formatTime";
 
-const Details = ({id, media}) => {
-    //Custom hook para hacer la consulta a la API
-    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${media}/${id}?language=es-MX`, media)
-    return (  
-        <>
-        {loading ?
-            <Loading />
-            : data ?
-            <div className='container-modal__content'>
+const Details = ({poster, name, date, overview, genres, media, runtime, number_of_seasons, production, languages}) => {
+    return (
+            <>
                 <div className='poster'>
-                    <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="Poster of the movie" />
+                    <img src={`https://image.tmdb.org/t/p/w500/${poster}`} alt="Poster de la pelicula o serie de TV" />
                 </div>
                 <div className="details_movie">
                     <div className="title">
-                        <h2>{data.title || data.name}</h2>
-                        <div className='release'><h4>Fecha de Estreno:</h4><p>{formatDate(data.release_date || data.first_air_date)}</p></div>
+                        <h2>{name}</h2>
+                        <div className='release'><h4>Fecha de Estreno:</h4><p>{formatDate(date)}</p></div>
                     </div>
                     <div className='overview'>
-                        <h3>Resumen:</h3><p>{data.overview}</p>
+                        <h3>Resumen:</h3><p>{overview}</p>
                     </div>
                     <div className='genres'>
                         <h3>Generos:</h3> 
                             {
-                                data.genres?.map((item, index) => {
+                                genres?.map((item, index) => {
                                     return <p className='genre' key={index}>{item.name}</p>
                                 })
                             }
@@ -38,18 +27,18 @@ const Details = ({id, media}) => {
                             {
                                 media === 'movie' ?
                                 <>
-                                    <h3>Duración:</h3><p>{formatTime(data.runtime)}</p>
+                                    <h3>Duración:</h3><p>{formatTime(runtime)}</p>
                                 </>
                                 :
                                 <>
-                                    <h3>Temporadas:</h3><p>{data.number_of_seasons}</p>
+                                    <h3>Temporadas:</h3><p>{number_of_seasons}</p>
                                 </>
                             }
                             </div>
                     <div className="country">
                         <h3>Pais de Origen:</h3>
                         {
-                            data.production_countries?.map((item, index) => {
+                            production?.map((item, index) => {
                                 return <p key={index}>{item.name}</p>
                             })
                         }
@@ -57,27 +46,14 @@ const Details = ({id, media}) => {
                     <div className="languague">
                         <h3>Idioma:</h3>
                         {
-                            data.spoken_languages?.map((item, index) => {
+                            languages?.map((item, index) => {
                                 return <p key={index}>{item.english_name}</p>
                             })
                         }
                     </div>
                 </div>
-                <div className='widgets'>
-                    <Credits 
-                        idQuery={id}
-                        mediatype={media}
-                    />
-                    <WatchProvider 
-                        idQuery={id}
-                        mediatype={media}
-                    />
-                </div>
-            </div>
-            : null
-        }
-        </>
-    );
+            </>
+        );
 }
  
 export default Details;

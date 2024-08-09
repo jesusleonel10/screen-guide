@@ -1,6 +1,6 @@
 import {useState, useContext, Fragment, useEffect} from 'react'
 import Filters from "./Filters";
-import Details from './Details';
+import Info from './Info';
 import Card from "./Card"
 import { ContextQuery } from '../context/contextQuery';
 import Modal from './Modal';
@@ -81,7 +81,7 @@ const List = () => {
                 //Al cambiar el type cambio el componente dentro de modal
                 modal.type === 'details' ?
                 <Modal header='Información' >
-                    <Details 
+                    <Info 
                         id={id}
                         media={media}
                     />

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import ModalSearch from './ModalSearch';
+import ResulstList from './ResultsList'
 import Modal from './Modal';
 import { ContextQuery } from '../context/contextQuery';
 import InfiniteScroll from './InfiniteScroll'
@@ -83,7 +83,7 @@ const Search = ({trending}) => {
             {//Al cambiar el type cambio el componente dentro de modal
             modal.type === 'search' ?
             <Modal header='Buscar Película o Serie de TV'>
-                <ModalSearch 
+                <ResulstList 
                     inputSearch={inputSearch}
                     setInputSearch={setInputSearch}
                 />
