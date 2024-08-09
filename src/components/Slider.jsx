@@ -1,13 +1,14 @@
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect} from 'react';
 import ItemSlider from './ItemSlider';
 import Info from './Info';
-import { ContextQuery } from '../context/contextQuery';
 
 import './../scss/Slider.scss'
 import Modal from './Modal';
 
 const Slider = ({trending, timeWindow, setTimeWindow}) => {
-  const {modal} = useContext(ContextQuery)
+  // const {modal} = useContext(ContextQuery)
+  const [modal, setModal] = useState(false);
+
   const [id, setId] = useState('');
   const [media, setMedia] = useState('');
 
@@ -72,6 +73,7 @@ const Slider = ({trending, timeWindow, setTimeWindow}) => {
              backdrop={item.backdrop_path}
              setMedia={setMedia}
              setId={setId}
+             setModal={setModal}
           />
          })      
         }
@@ -86,14 +88,13 @@ const Slider = ({trending, timeWindow, setTimeWindow}) => {
       </nav>
   </div>
         {
-          modal.type === 'details' ?
-          <Modal header='Información'>
+          modal &&
+          <Modal header='Información' setModal={setModal}>
               <Info 
                 id={id}
                 media={media}
               />
           </Modal>
-          : null
         }
 </>
     );

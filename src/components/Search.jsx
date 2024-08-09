@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext } from 'react';
-import ResulstList from './ResultsList'
+import { useState, useEffect } from 'react';
+import ResultsList from './ResultsList'
 import Modal from './Modal';
-import { ContextQuery } from '../context/contextQuery';
 import InfiniteScroll from './InfiniteScroll'
 import Tag from './Tag';
 
 import './../scss/Search.scss'
 
 const Search = ({trending}) => {
-    const {modal, setModal} = useContext(ContextQuery)
+    // const {modal, setModal} = useContext(ContextQuery)
+    const [modal, setModal] = useState(false);
 
     const [randomValue, setRandomValue] = useState(0);
     const [shuffleValue, setshuffleValue] = useState([]);
@@ -40,9 +40,10 @@ const Search = ({trending}) => {
             setModal(false)
         }else {
             //Creamos una copia del estado global, luego cambiamos la propiedad type y por actualizamos el estado global
-            const updateModal = {...modal}
-            updateModal.type = 'search'
-            setModal(updateModal)
+            // const updateModal = {...modal}
+            // updateModal.type = 'search'
+            // setModal(updateModal)
+            setModal(true)
         }
     }
 
@@ -81,15 +82,14 @@ const Search = ({trending}) => {
         </div>
             
             {//Al cambiar el type cambio el componente dentro de modal
-            modal.type === 'search' ?
-            <Modal header='Buscar Película o Serie de TV'>
-                <ResulstList 
+            modal &&
+            <Modal header='Buscar Película o Serie de TV' setModal={setModal}>
+                <ResultsList 
                     inputSearch={inputSearch}
                     setInputSearch={setInputSearch}
                 />
             </Modal>
-            : null}
-            
+            }
     </>
     )
 }

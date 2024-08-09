@@ -1,8 +1,7 @@
-import {useState, useContext, Fragment, useEffect} from 'react'
+import {useState, Fragment, useEffect} from 'react'
 import Filters from "./Filters";
 import Info from './Info';
 import Card from "./Card"
-import { ContextQuery } from '../context/contextQuery';
 import Modal from './Modal';
 import useFetchData from '../hooks/useFetchData';
 import { useLocation } from 'react-router-dom';
@@ -13,8 +12,10 @@ import './../scss/List.scss'
 
 const List = () => { 
     //Estado global
-    const {modal} = useContext(ContextQuery)
+    // const {modal} = useContext(ContextQuery)
     //Estados locales
+    const [modal, setModal] = useState(false);
+
     const [page, setPage] = useState(1);
     const [id, setId] = useState('');
     const [media, setMedia] = useState('');
@@ -62,9 +63,9 @@ const List = () => {
                         votes={element.vote_average}
                         votes_count={element.vote_count}
                         setId={setId}
+                        setModal={setModal}
                     />
                     })
-
             }
             </div>
             <div className="pages">
@@ -79,14 +80,13 @@ const List = () => {
             </div>
             {
                 //Al cambiar el type cambio el componente dentro de modal
-                modal.type === 'details' ?
-                <Modal header='Información' >
+                modal &&
+                <Modal header='Información' setModal={setModal}>
                     <Info 
                         id={id}
                         media={media}
                     />
                 </Modal>
-                : null
             }
         </>
     );

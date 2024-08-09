@@ -25,7 +25,6 @@ function App() {
             <List />} 
             />
           <Route path='/acerca-de' element={<About />} />
-          
           <Route path='*' element={ <Page404 /> } />
         </Routes>
       </BrowserRouter>

@@ -1,15 +1,15 @@
-import {useContext} from 'react'
 import styled from "styled-components";
-import { ContextQuery } from '../context/contextQuery';
 
-const ItemSlider = ({id, mediatype, title, overview, poster, backdrop, setMedia, setId}) => {
+const ItemSlider = ({id, mediatype, title, overview, poster, backdrop, setMedia, setId, setModal}) => {
     
-    const {setModal} = useContext(ContextQuery)
+    // const {setModal} = useContext(ContextQuery)
 
     const handleClick = (id, modal, mediatype) => {
-        const updateModal = {...modal}
-        updateModal.type = 'details'
-        setModal(updateModal)
+        // const updateModal = {...modal}
+        // updateModal.type = 'details'
+        // setModal(updateModal)
+
+        setModal(modal)
 
         setId(id)
         setMedia(mediatype)

@@ -1,10 +1,9 @@
-import {useContext, Fragment} from 'react'
-import { ContextQuery } from '../context/contextQuery';
+import {Fragment} from 'react'
 import './../scss/Modal.scss'
 
-const Modal = ({children, header}) => {
+const Modal = ({children, header, setModal}) => {
     //Estado global para quitar o mostrar el modal y la animacion de carga
-    const {setModal} = useContext(ContextQuery)
+    // const {setModal} = useContext(ContextQuery)
 
     const handleClick = () => {
         setModal(false)
