@@ -1,11 +1,12 @@
 import {useState, Fragment, useEffect} from 'react'
+import { useLocation } from 'react-router-dom';
 import Filters from "./Filters";
 import Info from './Info';
 import Card from "./Card"
 import Modal from './Modal';
 import useFetchData from '../hooks/useFetchData';
-import { useLocation } from 'react-router-dom';
 import formatLocation from '../functions/formatLocation';
+import Pages from './Pages';
 
 import styled from 'styled-components';
 import './../scss/List.scss'
@@ -31,7 +32,6 @@ const List = () => {
       setCategory('popular')
     }, [location]);
 
-
     return (
             <>
                 <Filters 
@@ -39,42 +39,41 @@ const List = () => {
                     mediatype={media}
                     setCategory={setCategory}
                 />
+                <Pages 
+                    page={page}
+                    setPage={setPage}
+                />
                 <div className='cards-container'>
-            { 
-            loading ?
-                arrCardLoading?.map((item) => (
-                        <Fragment key={item}>
-                            <CardLoading />
-                        </Fragment>
-                    ))
-            :
-                data?.results?.map((element) => {
-                    return <Card
-                        id={element.id}
-                        key={element.id}
-                        poster={element.poster_path} 
-                        title={element.name || element.title}
-                        release={element.release_date || element.first_air_date}
-                        runtime={element.runtime}
-                        overview={element.overview}
-                        votes={element.vote_average}
-                        votes_count={element.vote_count}
-                        setId={setId}
-                        setModal={setModal}
-                    />
-                    })
-            }
-            </div>
-            <div className="pages">
-            {
-                page === 1 ?
-                <button onClick={() => page > 1 ? setPage(page - 1) : null} disabled='disabled'>Anterior</button>
+                { 
+                loading ?
+                    arrCardLoading?.map((item) => (
+                            <Fragment key={item}>
+                                <CardLoading />
+                            </Fragment>
+                        ))
                 :
-                <button onClick={() => page > 1 ? setPage(page - 1) : null}>Anterior</button>
-
-            }
-            <button onClick={() => page < 1000 ? setPage(page + 1) : null}>Siguente</button>
-            </div>
+                    data?.results?.map((element) => {
+                        return <Card
+                            id={element.id}
+                            key={element.id}
+                            poster={element.poster_path} 
+                            title={element.name || element.title}
+                            release={element.release_date || element.first_air_date}
+                            runtime={element.runtime}
+                            overview={element.overview}
+                            votes={element.vote_average}
+                            votes_count={element.vote_count}
+                            setId={setId}
+                            setModal={setModal}
+                        />
+                        })
+                }
+                </div>
+                <Pages 
+                    page={page}
+                    setPage={setPage}
+                    footer={true}
+                />
             {
                 //Al cambiar el type cambio el componente dentro de modal
                 modal &&

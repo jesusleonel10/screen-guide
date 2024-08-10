@@ -3,6 +3,7 @@ import Loading from './Loading'
 import ItemSearch from './ItemSearch'
 import useFetchData from '../hooks/useFetchData'
 import Info from './Info'
+import Pages from './Pages'
 
 import './../scss/ResultsList.scss'
 
@@ -86,16 +87,10 @@ const ResultsList = ({inputSearch}) => {
                         </ul>
                             }
                     </div>
-                    <div className="search-pages">
-                        {
-                            page === 1 ?
-                            <button onClick={() => page > 1 ? setPage(page - 1) : null} disabled='disabled'>Anterior</button>
-                            :
-                            <button onClick={() => page > 1 ? setPage(page - 1) : null}>Anterior</button>
-
-                        }
-                        <button onClick={() => page < 1000 ? setPage(page + 1) : null}>Siguente</button>
-                    </div>
+                    <Pages 
+                        page={page}
+                        setPage={setPage}
+                    />
                 </div>
             }
         </>
