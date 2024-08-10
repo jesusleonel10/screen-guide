@@ -44,9 +44,7 @@ const List = () => {
             loading ?
                 arrCardLoading?.map((item) => (
                         <Fragment key={item}>
-                            <CardLoading>
-                                <Content />
-                            </CardLoading>
+                            <CardLoading />
                         </Fragment>
                     ))
             :
@@ -70,12 +68,12 @@ const List = () => {
             <div className="pages">
             {
                 page === 1 ?
-                <button onClick={() => page > 1 ? setPage(page - 1) : false} disabled='disabled'>Anterior</button>
+                <button onClick={() => page > 1 ? setPage(page - 1) : null} disabled='disabled'>Anterior</button>
                 :
-                <button onClick={() => page > 1 ? setPage(page - 1) : false}>Anterior</button>
+                <button onClick={() => page > 1 ? setPage(page - 1) : null}>Anterior</button>
 
             }
-            <button onClick={() => page < 1000 ? setPage(page + 1) : false}>Siguente</button>
+            <button onClick={() => page < 1000 ? setPage(page + 1) : null}>Siguente</button>
             </div>
             {
                 //Al cambiar el type cambio el componente dentro de modal
@@ -93,14 +91,6 @@ const List = () => {
  
 export default List;
 
-const CardLoading = styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background: #fff;
-    border-radius: 15px;
-`;
 
 const animationCard = () => {
     return {
@@ -111,8 +101,9 @@ const animationCard = () => {
     };
 }
 
-const Content = styled.div`
-    height: 330px;
+const CardLoading = styled.div`
+    min-width: 226px;
+    min-height: 339px;
     border-radius: 1.125rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     ${animationCard()}

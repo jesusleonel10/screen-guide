@@ -89,12 +89,12 @@ const ResultsList = ({inputSearch}) => {
                     <div className="search-pages">
                         {
                             page === 1 ?
-                            <button onClick={() => page > 1 ? setPage(page - 1) : false} disabled='disabled'>Anterior</button>
+                            <button onClick={() => page > 1 ? setPage(page - 1) : null} disabled='disabled'>Anterior</button>
                             :
-                            <button onClick={() => page > 1 ? setPage(page - 1) : false}>Anterior</button>
+                            <button onClick={() => page > 1 ? setPage(page - 1) : null}>Anterior</button>
 
                         }
-                        <button onClick={() => page < 1000 ? setPage(page + 1) : false}>Siguente</button>
+                        <button onClick={() => page < 1000 ? setPage(page + 1) : null}>Siguente</button>
                     </div>
                 </div>
             }

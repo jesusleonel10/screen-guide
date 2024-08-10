@@ -7,6 +7,8 @@ const useFetchData = (url, flag) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+    //Al haber cambios en el url confirmamos que loading sea true para que luego pase a false, de lo contrario no habria animacion de carga 
+    setLoading(true)
     //Uso flag para verificar primero que este definida para si hacer la llamada a la api, esto es mas que nada para cuando se recargue la pagina
     if(flag) {
         const fetchData = async() => {
@@ -37,7 +39,10 @@ const useFetchData = (url, flag) => {
             setError(error)
         //Paso la flag del loading a false por que se a terminado la peticion
         } finally {
-            setLoading(false)
+            //Usamos 300 como un tiempo minimo para mostrar la animacion, esto mas que nada cuando se hace una misma consulta dos veces
+            setTimeout(() => {
+                setLoading(false)
+            }, 300);
         }
      };
      fetchData();
