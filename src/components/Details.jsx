@@ -1,5 +1,7 @@
 import formatDate from "../functions/formatDate";
 import formatTime from "../functions/formatTime";
+import './../scss/Details.scss'
+
 
 const Details = ({poster, name, date, overview, genres, media, runtime, number_of_seasons, production, languages}) => {
     return (

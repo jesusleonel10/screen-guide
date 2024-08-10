@@ -11,9 +11,7 @@ import styled from 'styled-components';
 import './../scss/List.scss'
 
 const List = () => { 
-    //Estado global
-    // const {modal} = useContext(ContextQuery)
-    //Estados locales
+
     const [modal, setModal] = useState(false);
 
     const [page, setPage] = useState(1);
@@ -30,6 +28,7 @@ const List = () => {
 
     useEffect(() => {
       setMedia(formatLocation(location.pathname))
+      setCategory('popular')
     }, [location]);
 
 

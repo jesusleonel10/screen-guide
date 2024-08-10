@@ -1,4 +1,3 @@
-import './../scss/Details.scss'
 import useFetchData from '../hooks/useFetchData'
 import Details from './Details'
 import WatchProvider from './WatchProvider'

@@ -43,7 +43,14 @@ const Filters = ({mediatype, setPage, setCategory}) => {
             element.classList.remove('activebtn')
     });
 
+    const buttonsMobile = document.querySelectorAll('.category-container-mobile__button.activebtn')
+        buttonsMobile.forEach(element => {
+            element.classList.remove('activebtn')
+    });
+
     }, [mediatype]);
+
+    
 
 //Cambiar el estado para recibir el value del boton al que se hizo click
     const changeCategory = (event) => {
@@ -57,6 +64,11 @@ const Filters = ({mediatype, setPage, setCategory}) => {
         }
     const buttons = document.querySelectorAll('.category-container-desktop__button.activebtn')
         buttons.forEach(element => {
+            element.classList.remove('activebtn')
+        });
+    
+    const buttonsMobile = document.querySelectorAll('.category-container-mobile__button.activebtn')
+        buttonsMobile.forEach(element => {
             element.classList.remove('activebtn')
         });
 
@@ -84,7 +96,7 @@ const Filters = ({mediatype, setPage, setCategory}) => {
             <div className="category-container-mobile__buttons openbox">
                 <ul>
                     {categoryMenu.map((element) => {
-                    return <li key={element.id}><button className='category' value={element.valor} key={element.id} onClick={(e) => {changeCategory(e); handleClick()}}>{element.nombre}</button></li>
+                    return <li key={element.id}><button className='category-container-desktop__button' value={element.valor} key={element.id} onClick={(e) => {changeCategory(e); handleClick()}}>{element.nombre}</button></li>
                     })}
                 </ul>
             </div>

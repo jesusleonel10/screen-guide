@@ -39,10 +39,6 @@ const Search = ({trending}) => {
         if(inputSearch === '') {
             setModal(false)
         }else {
-            //Creamos una copia del estado global, luego cambiamos la propiedad type y por actualizamos el estado global
-            // const updateModal = {...modal}
-            // updateModal.type = 'search'
-            // setModal(updateModal)
             setModal(true)
         }
     }

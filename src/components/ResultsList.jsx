@@ -4,21 +4,25 @@ import ItemSearch from './ItemSearch'
 import useFetchData from '../hooks/useFetchData'
 import Info from './Info'
 
-import './../scss/ModalSearch.scss'
+import './../scss/ResultsList.scss'
 
 
-const ResultsList = ({inputSearch, setInputSearch}) => {
+const ResultsList = ({inputSearch}) => {
     //Esta flag para poder mostrar o no el Details dentro del modal que ya esta renderizado
     const [showDetails, setShowDetails] = useState(false);
     const [id, setId] = useState('');
     const [media, setMedia] = useState('');
 
-    //Estado local para las paginas y los resultados filtrados
+    //Estado del input al iniciar sera el del input anterior
+    const [inputSearchList, setInputSearchList] = useState(inputSearch);
+    //Estado para guardar la nueva consulta
     const [listQuery, setListQuery] = useState([]);
+    //Paginacion
     const [page, setPage] = useState(1);
-    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/search/multi?query=${inputSearch}&include_adult=false&language=es-MX&page=${page}`, inputSearch)
+    const { data, loading } = useFetchData(`https://api.themoviedb.org/3/search/multi?query=${inputSearchList}&include_adult=false&language=es-MX&page=${page}`, inputSearchList)
     
     useEffect(() => {
+
         //Filtro los datos para que solo sean películas y series de tv
         const filterResults = (obj) => {
             const onlyMoviesAndTv = obj.results && obj.results.filter((item) => item.media_type !== 'person')
@@ -30,6 +34,9 @@ const ResultsList = ({inputSearch, setInputSearch}) => {
 
     //Capturar cada cambio en el input text
     const handleChange = (setState) => (event) => {
+        //Reseteamos la paginacion a 1 por cada nueva busqueda
+        setPage(1)
+        //Capturamos lo que se ingrese en este input
         setState(event.target.value)
     }
     return (
@@ -49,9 +56,9 @@ const ResultsList = ({inputSearch, setInputSearch}) => {
                                 type="text" 
                                 placeholder="Ingresa el nombre de alguna película o serie de TV" 
                                 required="required"
-                                value={inputSearch}
+                                value={inputSearchList}
                                 //Capturamos cada cambio en el input y lo actualizamos al estado global
-                                onChange={handleChange(setInputSearch)}
+                                onChange={handleChange(setInputSearchList)}
                             />
                         </form>
                     </div>

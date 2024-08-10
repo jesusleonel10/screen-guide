@@ -14,7 +14,7 @@
       .item-list {
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
         gap: .5rem;
         padding: 1rem;
@@ -24,7 +24,8 @@
           background: #d8d8d8;
         }
         &__poster {
-          width: 3rem;
+          min-width: 3rem;
+          max-width: 3rem;
           img {
             width: 100%;
           }
@@ -33,9 +34,11 @@
           font-size: 1.1rem;
           font-weight: 400;
         }
+        &__media {
+          margin-left: auto;
+        }
         &__media, &__year {
           color: #585858;
-
         }
       }
     }
