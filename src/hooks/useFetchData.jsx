@@ -3,15 +3,13 @@ import { useEffect, useState } from "react";
 const useFetchData = (url, flag) => {
     //Definimos los estados para guardar los datos de la API, la flag para el loading y guardar el error en caso de que ocurra
     const [data, setData] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
     //Uso flag para verificar primero que este definida para si hacer la llamada a la api, esto es mas que nada para cuando se recargue la pagina
     if(flag) {
         const fetchData = async() => {
-            //Paso la flag a true para iniciar la peticion a la api
-            setLoading(true)
             const options = {
                 method: 'GET',
                 headers: {
