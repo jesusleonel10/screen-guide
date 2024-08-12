@@ -49,7 +49,9 @@ const Pages = ({page, setPage, footer}) => {
                     size='large' 
                     showFirstButton={widthScreen < 560 ? false : true}
                     showLastButton={widthScreen < 560 ? false : true}
-                    onChange={handleChange} />
+                    onChange={handleChange} 
+                    disabled={page === 0 ? true : false}
+                    />
             </div>
         </ThemeProvider>
     );
