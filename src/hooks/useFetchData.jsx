@@ -16,9 +16,9 @@ const useFetchData = (url, flag) => {
                 method: 'GET',
                 headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZTQ5NDE0YTUyNmIyMzU0Mzk4OTczNWJhMjFhZTNkNSIsInN1YiI6IjY2NGI3Njg5MTMxY2Y2YzE2ODdjZTM3NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.d2VJdOe_Mdkicyrlm_CGZREryZU8xC23wr0K_QAdIF8'
+                Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
             }
-        };
+            }
         try {
             //Hago la peticion pasandole la url que viene desde el componente
             const response = await fetch(url, options)
