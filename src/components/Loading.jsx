@@ -1,10 +1,12 @@
 import styled, { keyframes } from 'styled-components'
 
 
-const Loading = () => {
+const Loading = ({color}) => {
     return (
         <Container>
-            <DualRing />
+            <DualRing
+                color={color}
+            />
         </Container>
     );
 }
@@ -40,7 +42,8 @@ const DualRing = styled.div`
             margin: 8px;
             border-radius: 50%;
             border: 6px solid black;
-            border-color: black transparent black transparent;
+            /* border-color:  black transparent; */
+            border-color: transparent ${props => props.color || '#000'};
             animation: ${ringdual} 1.2s linear infinite;
         }
     `;

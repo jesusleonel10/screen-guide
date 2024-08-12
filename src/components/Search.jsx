@@ -16,7 +16,7 @@ const Search = ({trending}) => {
     const [inputSearch, setInputSearch] = useState('');
     const image_per_row = 7;
     const rows = 5;
-    const duration = 15000;
+    const duration = 25000;
     
     useEffect(() => {
         if(trending) {

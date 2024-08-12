@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
 import ItemSlider from './ItemSlider';
 import Info from './Info';
+import Modal from './Modal';
+import Loading from './Loading';
 
 import './../scss/Slider.scss'
-import Modal from './Modal';
-
-const Slider = ({trending, timeWindow, setTimeWindow}) => {
+const Slider = ({loading, trending, timeWindow, setTimeWindow}) => {
   // const {modal} = useContext(ContextQuery)
   const [modal, setModal] = useState(false);
 
@@ -61,7 +61,10 @@ const Slider = ({trending, timeWindow, setTimeWindow}) => {
           <button className='btntrend' id='week' value='week' onClick={(e) => changeTrending(e)}>Esta semana</button>
       </div>
       <ul className='slider-container__carousel'>
-        {
+      {
+        loading ?
+        <Loading color={'#fff'} />
+        :
          trending?.slice(0, 6)?.map((item) => {
           return <ItemSlider
              key={item.id}

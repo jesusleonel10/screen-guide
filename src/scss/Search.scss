@@ -5,16 +5,17 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     
+
     &__overlay {
       width: 100vw;
       height: 100vh;
-      background: linear-gradient(to bottom right, rgb(2, 131, 145, .92), rgb(145, 200, 206, .92));
+      background: linear-gradient(to bottom right, rgb(2, 131, 145, .97), rgb(145, 200, 206, .97));
       grid-column: 1;
       grid-row: 1 / span 2;
       z-index: 3;
       pointer-events: none;
-
     }
     
     &__title {

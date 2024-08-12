@@ -5,11 +5,12 @@
     align-items: center;
     width: 6.875rem;
     min-height: 10rem;
-    max-height: 11rem;
     gap: .5rem;
     padding: .5rem;
     background: #d2d8d2;
     border-radius: .5rem;
+    // cursor: pointer;
+
     &__photo {
         border-radius: 50%;
         width: 5.5rem;
@@ -35,7 +36,7 @@
             line-height: 1rem;  /* Ajusta la altura de línea para que quepa el texto en 2 líneas */
             overflow: hidden;  /* Oculta cualquier contenido que exceda las 2 líneas */
             text-overflow: ellipsis;  /* Agrega puntos suspensivos al final si el texto es demasiado largo */
-
+            margin-bottom: .3rem;
         }
         h4 {
             text-align: center;

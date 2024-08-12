@@ -41,7 +41,7 @@ const Credits = ({idQuery, mediatype}) => {
                                     key={index}
                                     photo={item.profile_path}
                                     name={item.name}
-                                    character={item?.roles?.map((c) => c.character)}
+                                    character={item?.roles?.map((c) => c.character).slice(0,1)}
                                 />
                             })
                         }
