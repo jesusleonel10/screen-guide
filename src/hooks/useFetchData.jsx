@@ -16,7 +16,7 @@ const useFetchData = (url, flag) => {
                 method: 'GET',
                 headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${secrets.API_KEY}`
+                Authorization: `Bearer ${env.API_KEY}`
             }
             }
         try {
