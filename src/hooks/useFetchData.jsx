@@ -16,7 +16,7 @@ const useFetchData = (url, flag) => {
                 method: 'GET',
                 headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
+                Authorization: `Bearer ${env.VITE_API_KEY}`
             }
             }
         try {
