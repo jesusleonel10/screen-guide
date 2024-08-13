@@ -12,11 +12,12 @@ const useFetchData = (url, flag) => {
     //Uso flag para verificar primero que este definida para si hacer la llamada a la api, esto es mas que nada para cuando se recargue la pagina
     if(flag) {
         const fetchData = async() => {
+            const api_token = import.meta.env.VITE_API_KEY
             const options = {
                 method: 'GET',
                 headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${process.env.VITE_API_KEY}`
+                Authorization: `Bearer ${api_token}`
             }
             }
         try {
