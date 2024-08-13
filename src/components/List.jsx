@@ -16,6 +16,7 @@ const List = () => {
     const [modal, setModal] = useState(false);
 
     const [page, setPage] = useState(1);
+
     const [id, setId] = useState('');
     const [media, setMedia] = useState('');
     //Definir el filtro de la busqueda entre popular, mejores valorados etc...
@@ -30,7 +31,7 @@ const List = () => {
     useEffect(() => {
       setMedia(formatLocation(location.pathname))
       setCategory('popular')
-    }, [location]);
+    }, [location, data.total_pages]);
 
     return (
             <>

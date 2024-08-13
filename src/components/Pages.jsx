@@ -4,7 +4,7 @@ import { createTheme, ThemeProvider  } from '@mui/material/styles';
 
 import './../scss/Pages.scss'
 
-const Pages = ({page, setPage, footer}) => {
+const Pages = ({page, setPage, totalpages, footer}) => {
     const [widthScreen, setWidthScreen] = useState(window.innerWidth);
 
     /* Al cargar el componente capturamos el ancho con window.innerWidth
@@ -42,11 +42,10 @@ const Pages = ({page, setPage, footer}) => {
             <div className={`${footer ? 'pages pages-border' : 'pages'}`}>
                 <Pagination 
                     siblingCount={widthScreen < 768 ? 0 : 2}
-                    count={50} 
+                    count={totalpages ? totalpages : 50} 
                     page={page} 
                     color='aqua' 
                     shape='rounded' 
-                    size='large' 
                     showFirstButton={widthScreen < 560 ? false : true}
                     showLastButton={widthScreen < 560 ? false : true}
                     onChange={handleChange} 

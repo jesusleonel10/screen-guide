@@ -13,7 +13,6 @@ const Main = () => {
         <>
             <Search 
               trending={data.results}
-
             />
             
             <Slider 

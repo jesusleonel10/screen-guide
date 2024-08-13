@@ -22,6 +22,7 @@ const ResultsList = ({inputSearch}) => {
     const [listQuery, setListQuery] = useState([]);
     //Paginacion
     const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
     const { data, loading } = useFetchData(`https://api.themoviedb.org/3/search/multi?query=${inputSearchList}&include_adult=false&language=es-MX&page=${page}`, inputSearchList)
     
     useEffect(() => {
@@ -33,6 +34,8 @@ const ResultsList = ({inputSearch}) => {
         }
 
         filterResults(data)
+        setTotalPages(data.total_pages)
+
      }, [data]);
 
     //Capturar cada cambio en el input text
@@ -111,6 +114,7 @@ const ResultsList = ({inputSearch}) => {
                     <Pages 
                         page={page}
                         setPage={setPage}
+                        totalpages={totalPages}
                     />
                 </div>
             }

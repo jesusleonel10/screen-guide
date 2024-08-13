@@ -9,8 +9,8 @@
     
 
     &__overlay {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       background: linear-gradient(to bottom right, rgb(2, 131, 145, .97), rgb(145, 200, 206, .97));
       grid-column: 1;
       grid-row: 1 / span 2;

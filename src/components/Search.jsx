@@ -57,7 +57,7 @@ const Search = ({trending}) => {
                         <input 
                             id="search" 
                             type="text" 
-                            placeholder="Buscar película o serie de TV" 
+                            placeholder="Escribe alguna película o serie" 
                             required="required"
                             value={inputSearch}
                             onChange={handleChange(setInputSearch)}
