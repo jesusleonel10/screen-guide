@@ -14,3 +14,11 @@ html, body {
 #root {
     position: relative;
 }
+
+button {
+    background: transparent;
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
+}
