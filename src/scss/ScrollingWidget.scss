@@ -20,8 +20,6 @@
     background: #f3f5f3;
   }
 
-
-  
   .action-buttons {
     position: relative;
     display: flex;
@@ -88,12 +86,9 @@
         background: var(--secondary);
       }
     }
-  }
-  
   @media screen and (max-width: 768px) {
-    .action-button--horizontal-scroll {
-      display: none;
-    }
+    display: none;
+  }
   }
   
   .action-button--previous {

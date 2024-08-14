@@ -36,6 +36,10 @@
         text-wrap: balance;
         text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
       }
+      @media (max-width: 800px) {
+        padding: 5rem .9rem 2.5rem;
+        font-size: 10px;
+      }
     }
 
     &__input { 
@@ -98,12 +102,5 @@
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
-  }
-  
-  @media screen and (max-width: 800px) {
-    .search-container__title {
-      padding: 5rem 0 2.5rem;
-      font-size: 10px;
-    }
   }
   

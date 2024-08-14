@@ -31,7 +31,8 @@ const List = () => {
     useEffect(() => {
       setMedia(formatLocation(location.pathname))
       setCategory('popular')
-    }, [location, data.total_pages]);
+      setPage(1)
+    }, [location]);
 
     return (
             <>
@@ -102,8 +103,8 @@ const animationCard = () => {
 }
 
 const CardLoading = styled.div`
-    min-width: 226px;
-    min-height: 339px;
+    min-width: 144px;
+    min-height: 216px;
     border-radius: 1.125rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     ${animationCard()}

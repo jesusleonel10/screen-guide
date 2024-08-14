@@ -1,15 +1,10 @@
 .watch_provider {
-    // grid-row: 2;
-    // grid-column: 3;
-    // grid-column-start: 3;
-
     .loading_provider {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100%;
     }
-
     .card_provider {
         width: 4rem;
         height: 4rem;
@@ -21,7 +16,6 @@
             border-radius: .5rem;
         }
     }
-
     .no_providers {
         display: flex;
         align-items: center;
@@ -31,10 +25,3 @@
     
     }
 }
-
-// @media screen and (min-width: 1200px) {
-//     .watch_provider {
-//         grid-row: 1;
-//         grid-column: 1;
-//     }
-// }

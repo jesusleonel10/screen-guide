@@ -1,4 +1,8 @@
 .category-container-desktop {
+  @media (max-width: 930px) {
+    display: none;
+  }
+
   &__buttons {
       bottom: 0;
       background: rgb(2, 131, 145);
@@ -39,6 +43,9 @@
 .category-container-mobile {
     display: none;
     position: relative;
+    @media (max-width: 930px) {
+      display: block;
+    }
   
     &__dropdown {
       display: flex;
@@ -48,6 +55,9 @@
       background-color: rgb(1, 23, 56);
       position: relative;
       z-index: 3;
+      @media (max-width: 600px) {
+        padding: 1rem 2rem;
+      }
   
       h4 {
         font-size: 1.2rem;
@@ -106,23 +116,4 @@
     transform: translateY(-100%);
     
   }
-  
-  @media screen and (max-width: 930px) {
-    .category-container-mobile {
-      display: block;
-    }
-  
-    .category-container-desktop {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    .category-container-mobile{
-      &__dropdown {
-        padding: 1rem 2rem;
-      }
-    } 
-  }
-
   
