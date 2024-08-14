@@ -6,9 +6,7 @@ import Loading from './Loading'
            
 
 const Info = ({id, media}) => {
-    //Custom hook para hacer la consulta a la API
     const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${media}/${id}?language=es-MX`, media)
-
 
     return (  
         <>
