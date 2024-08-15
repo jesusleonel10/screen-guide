@@ -17,13 +17,14 @@ const Details = ({changeDetails, idDetails, mediaDetails}) => {
                 return  `https://api.themoviedb.org/3/${mediaDetails}/${idDetails}?language=es-MX`;
             }
         }
-    const { data, loading } = useFetchData(getUrl(changeDetails), mediaDetails)
+    const { data, loading, changeFlag } = useFetchData(getUrl(changeDetails), mediaDetails, changeDetails)
+
 
     return (
             <>
                {loading ?
                 <Loading />
-                : changeDetails ? <MovieSeriesTV data={data} /> : <People data={data} />
+                :  changeFlag ? <MovieSeriesTV data={data} /> : <People data={data} />
                 }
             </>
         );

@@ -9,8 +9,6 @@ const Info = ({id, media, change}) => {
     const [idDetails, setIdDetails] = useState(id);
     const [mediaDetails, setMediaDetails] = useState(media);
     const [changeDetails, setChangeDetails] = useState(change);
-    
-    console.log(idDetails);
 
     return  (  
         <>

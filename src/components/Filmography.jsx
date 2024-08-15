@@ -3,6 +3,8 @@ import ItemContainer from './ItemContainer'
 import Loading from './Loading';
 import useFetchData from '../hooks/useFetchData';
 
+import './../scss/Filmography.scss'
+
 const Filmography = ({idDetails, mediaDetails, setChangeDetails, setIdDetails, setMediaDetails}) => {
     //Estado para guardar la nueva consulta
     const [filmography, setFilmography] = useState([]);
@@ -26,12 +28,15 @@ const Filmography = ({idDetails, mediaDetails, setChangeDetails, setIdDetails, s
                 loading ?
                 <Loading />
                 :
-                <ItemContainer 
-                    dataList={filmography}
-                    setId={setIdDetails}
-                    setMedia={setMediaDetails}
-                    setChangeDetails={setChangeDetails}
-                />
+                <div className="filmography">
+                    <h2 className='filmography__title'>Películas y Series</h2>
+                    <ItemContainer 
+                        dataList={filmography}
+                        setId={setIdDetails}
+                        setMedia={setMediaDetails}
+                        setChangeDetails={setChangeDetails}
+                    />
+                </div>
             }
        </>
     );

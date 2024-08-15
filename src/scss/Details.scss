@@ -11,6 +11,9 @@
 
         }
     }
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
 
     .details {
         display: flex;
