@@ -96,6 +96,7 @@ const Slider = ({loading, trending, timeWindow, setTimeWindow}) => {
               <Info 
                 id={id}
                 media={media}
+                change={true}
               />
           </Modal>
         }

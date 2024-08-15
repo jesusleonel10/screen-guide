@@ -9,9 +9,9 @@ import formatLocation from '../functions/formatLocation';
 import Pages from './Pages';
 
 import styled from 'styled-components';
-import './../scss/List.scss'
+import './../scss/CardList.scss'
 
-const List = () => { 
+const CardList = () => { 
 
     const [modal, setModal] = useState(false);
 
@@ -83,6 +83,7 @@ const List = () => {
                     <Info 
                         id={id}
                         media={media}
+                        change={true}
                     />
                 </Modal>
             }
@@ -90,7 +91,7 @@ const List = () => {
     );
 }
  
-export default List;
+export default CardList;
 
 
 const animationCard = () => {

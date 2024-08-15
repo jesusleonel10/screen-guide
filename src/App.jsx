@@ -1,13 +1,12 @@
 import Header from './components/Header';
 import Main from './components/Main';
-import List from './components/List'
 import About from './components/About';
 // import { ContextQuery } from './context/contextQuery';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './scss/App.scss';
 import Page404 from './components/Page404';
-
+import CardList from './components/CardList';
 
 function App() {
   return (
@@ -19,10 +18,10 @@ function App() {
             <Main />
           } />
           <Route path='/movies' element={
-            <List />} 
+            <CardList />} 
             />
           <Route path='/tv-shows' element={
-            <List />} 
+            <CardList />} 
             />
           <Route path='/acerca-de' element={<About />} />
           <Route path='*' element={ <Page404 /> } />

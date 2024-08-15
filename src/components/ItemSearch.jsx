@@ -1,12 +1,11 @@
 import formatDateYear from "./../functions/formatDateYear";
-import './../scss/ItemSearch.scss'
 
-const ItemSearch = ({id, title, poster, mediaType, year, setId, setMedia, setShowDetails}) => {
+const ItemSearch = ({id, title, poster, mediaType, year, setId, setMedia, setChangeDetails}) => {
 
     const handleClick = (id, media) => {
         setId(id)
         setMedia(media)
-        setShowDetails(true)
+        setChangeDetails(true)
     }
     
     return (

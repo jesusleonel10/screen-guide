@@ -1,16 +1,16 @@
 import {useState, useEffect} from 'react'
 import Loading from './Loading'
-import ItemSearch from './ItemSearch'
 import useFetchData from '../hooks/useFetchData'
 import Info from './Info'
 import Pages from './Pages'
+import ItemContainer from './ItemContainer'
 
 import './../scss/ResultsList.scss'
 
 
 const ResultsList = ({inputSearch}) => {
     //Esta flag para poder mostrar o no el Details dentro del modal que ya esta renderizado
-    const [showDetails, setShowDetails] = useState(false);
+    const [changeDetails, setChangeDetails] = useState(false);
     const [id, setId] = useState('');
     const [media, setMedia] = useState('');
 
@@ -59,10 +59,11 @@ const ResultsList = ({inputSearch}) => {
     }
     return (
         <>
-            {showDetails ?
+            {changeDetails ?
                     <Info 
                         id={id}
                         media={media}
+                        change={true}
                     />
                 :
                 <div className="container-modal__search">
@@ -80,7 +81,6 @@ const ResultsList = ({inputSearch}) => {
                             />
                         </form>
                     </div>
-                    <div className="list">
                         {empty ?
                             <div className="empty">
                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -89,33 +89,18 @@ const ResultsList = ({inputSearch}) => {
                             : loading ?
                             <Loading />
                             :
-                        <ul>
-                            {
-                            
-                                listQuery?.map((item, index) => {
-                                        return <ItemSearch 
-                                            key={index}
-                                            id={item.id}
-                                            poster={item.poster_path}
-                                            title={item.name || item.title}
-                                            mediaType={item.media_type}
-                                            year={item.release_date || item.first_air_date}
-                                            votes={item.vote_average}
-                                            votesCount={item.vote_count}
-                                            setId={setId}
-                                            setMedia={setMedia}
-                                            setShowDetails={setShowDetails}
-                                        />
-                                })
+                            <ItemContainer 
+                                dataList={listQuery}
+                                setId={setId}
+                                setMedia={setMedia}
+                                setChangeDetails={setChangeDetails}
+                            />
                             }
-                        </ul>
-                            }
-                    </div>
-                    <Pages 
-                        page={page}
-                        setPage={setPage}
-                        totalpages={totalPages}
-                    />
+                            <Pages 
+                                page={page}
+                                setPage={setPage}
+                                totalpages={totalPages}
+                            />
                 </div>
             }
         </>

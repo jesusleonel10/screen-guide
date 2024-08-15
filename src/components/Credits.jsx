@@ -6,7 +6,7 @@ import useFetchData from '../hooks/useFetchData';
 
 import './../scss/Credits.scss'
 
-const Credits = ({idQuery, mediatype}) => {
+const Credits = ({idQuery, mediatype, setChangeDetails, setIdDetails}) => {
     //Custom hook para hacer la consulta a la API
     const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediatype}/${idQuery}/${mediatype === 'tv' ? 'aggregate_credits' : 'credits'}?language=es-MX`, mediatype)
 
@@ -30,18 +30,25 @@ const Credits = ({idQuery, mediatype}) => {
                             data?.cast?.slice(0, 12)?.map((item, index) => {
                                 return <Profile
                                     key={index}
+                                    id={item.id}
                                     photo={item.profile_path}
                                     name={item.name}
                                     character={item.character}
+                                    setIdDetails={setIdDetails}
+                                    setChangeDetails={setChangeDetails}
                                 />
                             })
                             :
                             data?.cast?.slice(0, 12)?.map((item, index) => {
                                 return <Profile
                                     key={index}
+                                    id={item.id}
                                     photo={item.profile_path}
                                     name={item.name}
                                     character={item?.roles?.map((c) => c.character).slice(0,1)}
+                                    setIdDetails={setIdDetails}
+                                    setChangeDetails={setChangeDetails}
+
                                 />
                             })
                         }
@@ -58,9 +65,13 @@ const Credits = ({idQuery, mediatype}) => {
                             ?.map((item, index) => {
                                 return <Profile
                                     key={index}
+                                    id={item.id}
                                     photo={item.profile_path}
                                     name={item.name}
                                     job={item?.jobs?.map((i) => i.job)}
+                                    setIdDetails={setIdDetails}
+                                    setChangeDetails={setChangeDetails}
+
                                 />
                             })
                             :
@@ -69,9 +80,13 @@ const Credits = ({idQuery, mediatype}) => {
                             ?.map((item, index) => {
                                 return <Profile
                                     key={index}
+                                    id={item.id}
                                     photo={item.profile_path}
                                     name={item.name}
                                     job={item.job}
+                                    setIdDetails={setIdDetails}
+                                    setChangeDetails={setChangeDetails}
+
                                 />
                             })
                         }

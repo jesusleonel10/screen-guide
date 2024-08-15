@@ -43,22 +43,3 @@
       }
     }
   }
-.search-pages {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 2rem;
-  padding: 1rem 0;
-  border-radius: 0 0 1rem 1rem;
-  button {
-    background: #ccc;
-    padding: .6rem 1.1rem;
-    border-radius: .2rem;
-    font-family: "Open Sans", sans-serif;
-    font-size: .9rem;
-    &:hover{
-      background: #bbb;
-    }
-  }
-}
