@@ -5,6 +5,10 @@ const useFetchData = (url, flag, flagDetails) => {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    /*
+    La segunda flag primero la creo, luego al terminar la llamada de la api
+    le paso el valor que recibi por props
+    */
     const [changeFlag, setChangeFlag] = useState(null);
 
     useEffect(() => {
@@ -45,6 +49,7 @@ const useFetchData = (url, flag, flagDetails) => {
             setTimeout(() => {
                 setLoading(false)
             }, 300);
+            //Aqui le paso el valor que recibi por prop
             setChangeFlag(flagDetails)
         }
      };

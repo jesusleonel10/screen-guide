@@ -35,8 +35,15 @@
           }
         }
         &__title {
-          font-size: 1.1em;
+          font-size: 1em;
           font-weight: 400;
+          .character {
+            font-size: .8rem;
+            font-weight: 500;
+            span {
+              font-weight: 300;
+            }
+          }
         }
         &__media {
           margin-left: auto;

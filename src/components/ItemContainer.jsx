@@ -14,6 +14,7 @@ const ItemContainer = ({dataList, setId, setMedia, setChangeDetails}) => {
                                 title={item.name || item.title}
                                 mediaType={item.media_type}
                                 year={item.release_date || item.first_air_date}
+                                character={item.character}
                                 setId={setId}
                                 setMedia={setMedia}
                                 setChangeDetails={setChangeDetails}
