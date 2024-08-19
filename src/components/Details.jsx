@@ -25,7 +25,6 @@ const Details = ({changeDetails, idDetails, mediaDetails}) => {
         }
     const { data, loading, changeFlag } = useFetchData(getUrl(changeDetails), mediaDetails, changeDetails)
 
-
     return (
             <>
                {loading ?

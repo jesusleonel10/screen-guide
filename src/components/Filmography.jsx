@@ -15,7 +15,7 @@ const Filmography = ({idDetails, mediaDetails, setChangeDetails, setIdDetails, s
     useEffect(() => {
         
         const filterResults = (obj) => {
-            const onlyCastNoEpisodes = obj && obj.filter((item) => item.character !== 'Self' || item.character !== 'Herself')
+            const onlyCastNoEpisodes = obj && obj.filter((item) => !item.genre_ids.some((element) => element === 10767 || element === 10763 || element === 10764))
             const movieslistForActor = onlyCastNoEpisodes?.filter((item) => item.media_type === 'movie')
             const seriesListForActor = onlyCastNoEpisodes?.filter((item) => item.media_type === 'tv')
             setOnlyMovies(movieslistForActor)

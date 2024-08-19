@@ -13,20 +13,21 @@ const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetail
         setValue(newValue);
     };
 
+
     return (
         <div className="list">
-            <ul>
                 <Box  sx={{ width: '100%' }} >
                     <Box sx={{ borderBottom: 1, borderColor: 'divider'}} >
                         <Tabs
                             value={value}
                             onChange={handleChange}
                             variant="fullWidth"
-                        >
+                            >
                             <Tab value="1" label="Películas" />
                             <Tab value="2" label="Series de TV" />
                         </Tabs>
                     </Box>
+                <ul>
                     {
                      value === '1' && listMovies?.map((item, index) => {
                                 return <ItemSearch 
@@ -59,33 +60,8 @@ const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetail
                                 />
                         })
                     }
-                </Box>
-                
-                    
-
-
-
-
-
-{/* 
-                {
-                    dataList?.filter((item) => item.media_type === 'movie')
-                    .map((item, index) => {
-                            return <ItemSearch 
-                                key={index}
-                                id={item.id}
-                                poster={item.poster_path}
-                                title={item.name || item.title}
-                                mediaType={item.media_type}
-                                year={item.release_date || item.first_air_date}
-                                character={item.character}
-                                setId={setId}
-                                setMedia={setMedia}
-                                setChangeDetails={setChangeDetails}
-                            />
-                    })
-                } */}
-            </ul>
+                </ul>
+            </Box>
         </div>
     );
 }
