@@ -19,7 +19,10 @@ const ResultsList = ({inputSearch}) => {
     //Estado del input al iniciar sera el del input anterior
     const [inputSearchList, setInputSearchList] = useState(inputSearch);
     //Estado para guardar la nueva consulta
-    const [listQuery, setListQuery] = useState([]);
+    const [listQuery, setListQuery] = useState(null);
+    const [onlyMovies, setOnlyMovies] = useState(null);
+    const [onlySeries, setOnlySeries] = useState(null);
+
     //Paginacion
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -30,6 +33,10 @@ const ResultsList = ({inputSearch}) => {
         //Filtro los datos para que solo sean películas y series de tv
         const filterResults = (obj) => {
             const onlyMoviesAndTv = obj.results && obj.results.filter((item) => item.media_type !== 'person')
+            const movieslistForActor = onlyMoviesAndTv?.filter((item) => item.media_type === 'movie')
+            const seriesListForActor = onlyMoviesAndTv?.filter((item) => item.media_type === 'tv')
+            setOnlyMovies(movieslistForActor)
+            setOnlySeries(seriesListForActor)
             setListQuery(onlyMoviesAndTv)
         }
 
@@ -91,6 +98,8 @@ const ResultsList = ({inputSearch}) => {
                             :
                             <ItemContainer 
                                 dataList={listQuery}
+                                listMovies={onlyMovies}
+                                listSeries={onlySeries}
                                 setId={setId}
                                 setMedia={setMedia}
                                 setChangeDetails={setChangeDetails}

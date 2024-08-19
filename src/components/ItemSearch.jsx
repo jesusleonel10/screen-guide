@@ -18,7 +18,7 @@ const ItemSearch = ({id, title, poster, mediaType, year, character, setId, setMe
                 </div>
                 <div className="item-list__title">
                    <p>{title}</p>
-                   <p className="character">Personaje: <span>{character}</span></p>
+                   {character && <p className="character">Personaje: <span>{character}</span></p>}
                 </div>
                 <span className="item-list__media">{mediaType === 'tv' ? 'Serie de TV' : 'Película'}</span>
                 <span className="item-list__year">{formatDateYear(year)}</span>

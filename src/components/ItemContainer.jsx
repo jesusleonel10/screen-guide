@@ -6,11 +6,10 @@ import ItemSearch from "./ItemSearch";
 
 import './../scss/ItemContainer.scss'
 
-const ItemContainer = ({dataList, setId, setMedia, setChangeDetails}) => {
+const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetails}) => {
     const [value, setValue] = useState('1');
 
     const handleChange = (event, newValue) => {
-        console.log(newValue);
         setValue(newValue);
     };
 
@@ -18,18 +17,18 @@ const ItemContainer = ({dataList, setId, setMedia, setChangeDetails}) => {
         <div className="list">
             <ul>
                 <Box  sx={{ width: '100%' }} >
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider'}} >
                         <Tabs
                             value={value}
                             onChange={handleChange}
+                            variant="fullWidth"
                         >
                             <Tab value="1" label="Películas" />
                             <Tab value="2" label="Series de TV" />
                         </Tabs>
                     </Box>
                     {
-                     value === '1' && dataList?.filter((item) => item.media_type === 'movie')
-                        .map((item, index) => {
+                     value === '1' && listMovies?.map((item, index) => {
                                 return <ItemSearch 
                                     key={index}
                                     id={item.id}
@@ -45,8 +44,7 @@ const ItemContainer = ({dataList, setId, setMedia, setChangeDetails}) => {
                         })
                     }
                     {
-                    value === '2' && dataList?.filter((item) => item.media_type === 'tv')
-                        .map((item, index) => {
+                    value === '2' && listSeries?.map((item, index) => {
                                 return <ItemSearch 
                                     key={index}
                                     id={item.id}

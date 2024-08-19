@@ -17,8 +17,8 @@ const CardList = () => {
 
     const [page, setPage] = useState(1);
 
-    const [id, setId] = useState('');
-    const [media, setMedia] = useState('');
+    const [id, setId] = useState(null);
+    const [media, setMedia] = useState(null);
     //Definir el filtro de la busqueda entre popular, mejores valorados etc...
     const [category, setCategory] = useState('popular');
     //Estado para obtener la ruta actual
