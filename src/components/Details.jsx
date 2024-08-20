@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import useFetchData from '../hooks/useFetchData'
 import './../scss/Details.scss'
 
-const Details = ({changeDetails, idDetails, mediaDetails}) => {
+const Details = ({typeDetails, idDetails, mediaDetails}) => {
     /* 
     changeDetails lo recibo aqui para pasarselo al hook custom
     hago esto para cambiarle el valor al mismo tiempo que 'loading' en el hook
@@ -14,21 +14,26 @@ const Details = ({changeDetails, idDetails, mediaDetails}) => {
     //Con esta funcion primero verifico el type, para luego si usar el hook dependiendo del type cambio el url para la llamada de la api
     const getUrl = (type) => {
         switch (type) {
-            case true :
+            case 'movie' :
                 return `https://api.themoviedb.org/3/${mediaDetails}/${idDetails}?language=es-MX`;
-            case false:
+            case 'tv' :
+                return `https://api.themoviedb.org/3/${mediaDetails}/${idDetails}?language=es-MX`;
+            case 'person':
                 return `https://api.themoviedb.org/3/person/${idDetails}?language=es-MX`
             default:
                 return  `https://api.themoviedb.org/3/${mediaDetails}/${idDetails}?language=es-MX`;
             }
         }
-    const { data, loading, changeFlag } = useFetchData(getUrl(changeDetails), mediaDetails, changeDetails)
+    const { data, loading, changeFlag } = useFetchData(getUrl(typeDetails), mediaDetails, typeDetails)
 
     return (
             <>
                {loading ?
                 <Loading />
-                : changeFlag ? <MovieSeriesTV data={data}/> : <People data={data} />
+                : changeFlag === 'movie' || changeFlag === 'tv' ? 
+                <MovieSeriesTV data={data}/> 
+                : 
+                <People data={data} />
                 }
             </>
         );

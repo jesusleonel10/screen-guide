@@ -1,11 +1,15 @@
 import formatDateYear from "./../functions/formatDateYear";
 
-const ItemSearch = ({id, title, poster, mediaType, year, character, setId, setMedia, setChangeDetails}) => {
+const ItemSearch = ({id, title, poster, mediaType, year, character, setId, setMedia, setTypeDetails, setShowDetails}) => {
 
     const handleClick = (id, media) => {
         setId(id)
         setMedia(media)
-        setChangeDetails(true)
+        //Si la flag de typeDetails esta definida la cambiamos
+        setTypeDetails && setTypeDetails(media)
+        //Si la flag de showDetails esta definida la pasamos a true
+        //Esta es para poder mostrar quitar ResultList y mostrar Details al hacer click en algun resultado
+        setShowDetails && setShowDetails(true)
     }
     
     return (
@@ -20,7 +24,7 @@ const ItemSearch = ({id, title, poster, mediaType, year, character, setId, setMe
                    <p>{title}</p>
                    {character && <p className="character">Personaje: <span>{character}</span></p>}
                 </div>
-                <span className="item-list__year">{formatDateYear(year)}</span>
+                {year && <span className="item-list__year">{formatDateYear(year)}</span>}
             </li>
         }
         </>

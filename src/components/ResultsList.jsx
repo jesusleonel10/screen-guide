@@ -10,34 +10,38 @@ import './../scss/ResultsList.scss'
 
 const ResultsList = ({inputSearch}) => {
     //Esta flag para poder mostrar o no el Details dentro del modal que ya esta renderizado
-    const [changeDetails, setChangeDetails] = useState(false);
-    const [id, setId] = useState('');
-    const [media, setMedia] = useState('');
+    const [showDetails, setShowDetails] = useState(false);
 
+    const [id, setId] = useState(null);
+    const [media, setMedia] = useState(null);
+    //Flag para saber si el input esta vacio o no
     const [empty, setEmpty] = useState(false);
 
     //Estado del input al iniciar sera el del input anterior
     const [inputSearchList, setInputSearchList] = useState(inputSearch);
     //Estado para guardar la nueva consulta
-    const [listQuery, setListQuery] = useState(null);
+    // const [listQuery, setListQuery] = useState(null);
     const [onlyMovies, setOnlyMovies] = useState(null);
     const [onlySeries, setOnlySeries] = useState(null);
+    const [onlyPeople, setOnlyPeople] = useState(null);
 
     //Paginacion
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    //Consulta a la api
     const { data, loading } = useFetchData(`https://api.themoviedb.org/3/search/multi?query=${inputSearchList}&include_adult=false&language=es-MX&page=${page}`, inputSearchList)
     
     useEffect(() => {
 
         //Filtro los datos para que solo sean películas y series de tv
         const filterResults = (obj) => {
-            const onlyMoviesAndTv = obj.results && obj.results.filter((item) => item.media_type !== 'person')
-            const movieslistForActor = onlyMoviesAndTv?.filter((item) => item.media_type === 'movie').sort((a, b) => b.popularity - a.popularity)
-            const seriesListForActor = onlyMoviesAndTv?.filter((item) => item.media_type === 'tv').sort((a, b) => b.popularity - a.popularity)
-            setOnlyMovies(movieslistForActor)
-            setOnlySeries(seriesListForActor)
-            setListQuery(onlyMoviesAndTv)
+            const results = obj.results
+            const movieslist = results && results.filter((item) => item.media_type === 'movie').sort((a, b) => b.popularity - a.popularity)
+            const seriesList = results && results.filter((item) => item.media_type === 'tv').sort((a, b) => b.popularity - a.popularity)
+            const peopleList = results && results.filter((item) => item.media_type === 'person').sort((a, b) => b.popularity - a.popularity)
+            setOnlyMovies(movieslist)
+            setOnlySeries(seriesList)
+            setOnlyPeople(peopleList)
         }
 
         filterResults(data)
@@ -65,12 +69,13 @@ const ResultsList = ({inputSearch}) => {
         }
     }
     return (
-        <>
-            {changeDetails ?
+        <> 
+            {showDetails ?
+            //Si es true, quito el ResultList para mostrar Info el resto de componentes dentro de él
                     <Info 
                         id={id}
                         media={media}
-                        change={true}
+                        type={media}
                     />
                 :
                 <div className="container-modal__search">
@@ -80,7 +85,7 @@ const ResultsList = ({inputSearch}) => {
                             <input 
                                 id="search" 
                                 type="text" 
-                                placeholder="Ingresa el nombre de alguna película o serie de TV" 
+                                placeholder="Ingresa el nombre de alguna película, serie de TV o celebridad" 
                                 required="required"
                                 value={inputSearchList}
                                 //Capturamos cada cambio en el input y lo actualizamos al estado global
@@ -97,12 +102,12 @@ const ResultsList = ({inputSearch}) => {
                             <Loading />
                             :
                             <ItemContainer 
-                                dataList={listQuery}
+                                listPeople={onlyPeople}
                                 listMovies={onlyMovies}
                                 listSeries={onlySeries}
                                 setId={setId}
                                 setMedia={setMedia}
-                                setChangeDetails={setChangeDetails}
+                                setShowDetails={setShowDetails}
                             />
                             }
                             <Pages 

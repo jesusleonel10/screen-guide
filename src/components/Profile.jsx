@@ -1,9 +1,9 @@
 import './../scss/Profile.scss'
 
-const Profile = ({id, photo, name, character, job, setChangeDetails, setIdDetails}) => {
+const Profile = ({id, photo, name, character, job, setTypeDetails, setIdDetails}) => {
 
     const handleClick = () => {
-        setChangeDetails(false)
+        setTypeDetails('person')
         setIdDetails(id)
     }
 

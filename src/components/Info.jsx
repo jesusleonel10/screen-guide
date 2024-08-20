@@ -4,11 +4,11 @@ import WatchProvider from './WatchProvider'
 import Credits from './Credits'
 import Filmography from './Filmography'
 
-const Info = ({id, media, change}) => {
+const Info = ({id, media, type}) => {
 
     const [idDetails, setIdDetails] = useState(id);
     const [mediaDetails, setMediaDetails] = useState(media);
-    const [changeDetails, setChangeDetails] = useState(change);
+    const [typeDetails, setTypeDetails] = useState(type);
 
     return  (  
         <>
@@ -16,27 +16,28 @@ const Info = ({id, media, change}) => {
                     <Details 
                         idDetails={idDetails}
                         mediaDetails={mediaDetails}
-                        changeDetails={changeDetails}
+                        typeDetails={typeDetails}
                     />
                         {
-                        changeDetails ?
+                        typeDetails === 'movie' || typeDetails === 'tv' ?
                         <div className='widgets'>
                             <Credits 
                                 idQuery={idDetails}
                                 mediatype={mediaDetails}
-                                setChangeDetails={setChangeDetails}
                                 setIdDetails={setIdDetails}
+                                setTypeDetails={setTypeDetails}
                             />
                             <WatchProvider 
                                 idQuery={idDetails}
                                 mediatype={mediaDetails}
                             />
                         </div>
+                        //En caso de ser typeDetails igual a person
                         : 
                         <Filmography
                             idDetails={idDetails}
                             mediaDetails={mediaDetails} 
-                            setChangeDetails={setChangeDetails}
+                            setTypeDetails={setTypeDetails}
                             setIdDetails={setIdDetails}
                             setMediaDetails={setMediaDetails}
                         />

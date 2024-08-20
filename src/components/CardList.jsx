@@ -12,9 +12,8 @@ import styled from 'styled-components';
 import './../scss/CardList.scss'
 
 const CardList = () => { 
-
+    //Flag para mostrar o no el modal
     const [modal, setModal] = useState(false);
-
     const [page, setPage] = useState(1);
 
     const [id, setId] = useState(null);
@@ -34,6 +33,8 @@ const CardList = () => {
       setPage(1)
     }, [location]);
 
+
+    console.log(media);
     return (
             <>
                 <Filters 
@@ -83,7 +84,7 @@ const CardList = () => {
                     <Info 
                         id={id}
                         media={media}
-                        change={true}
+                        type={media}
                     />
                 </Modal>
             }

@@ -5,7 +5,7 @@ import useFetchData from '../hooks/useFetchData';
 
 import './../scss/Filmography.scss'
 
-const Filmography = ({idDetails, mediaDetails, setChangeDetails, setIdDetails, setMediaDetails}) => {
+const Filmography = ({idDetails, mediaDetails, setTypeDetails, setIdDetails, setMediaDetails}) => {
     //Estado para guardar la nueva consulta
     const [filmography, setFilmography] = useState(null);
     const [onlyMovies, setOnlyMovies] = useState(null);
@@ -15,11 +15,15 @@ const Filmography = ({idDetails, mediaDetails, setChangeDetails, setIdDetails, s
     useEffect(() => {
         
         const filterResults = (obj) => {
+            //Filtro para que no devolver apariciones de actor en programas de Entrevista y Reallitys
             const onlyCastNoEpisodes = obj && obj
             .filter((item) => !item.genre_ids
             .some((element) => element === 10767 || element === 10763 || element === 10764))
+            
             const movieslistForActor = onlyCastNoEpisodes?.filter((item) => item.media_type === 'movie').sort((a, b) => b.popularity - a.popularity)
             const seriesListForActor = onlyCastNoEpisodes?.filter((item) => item.media_type === 'tv').sort((a, b) => b.popularity - a.popularity)
+            
+            //Separo por movies y series
             setOnlyMovies(movieslistForActor)
             setOnlySeries(seriesListForActor)
             setFilmography(onlyCastNoEpisodes)
@@ -45,7 +49,7 @@ const Filmography = ({idDetails, mediaDetails, setChangeDetails, setIdDetails, s
                             listSeries={onlySeries}
                             setId={setIdDetails}
                             setMedia={setMediaDetails}
-                            setChangeDetails={setChangeDetails}
+                            setTypeDetails={setTypeDetails}
                         />
                     </>
                 }

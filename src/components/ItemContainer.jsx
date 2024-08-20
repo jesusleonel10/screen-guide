@@ -6,11 +6,12 @@ import ItemSearch from "./ItemSearch";
 
 import './../scss/ItemContainer.scss'
 
-const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetails}) => {
+const ItemContainer = ({listMovies, listSeries, listPeople, setId, setMedia, setTypeDetails, setShowDetails}) => {
     const [value, setValue] = useState(0);
     /* useRef para crear una referencia a cada contenedor de las listas, las guardo en otra variable aparte */
     const listRef1 = useRef(null);
     const listRef2 = useRef(null);
+    const listRef3 = useRef(null);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -26,6 +27,9 @@ const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetail
         if (listRef2.current) {
           listRef2.current.scrollTop = 0;
         }
+        if (listRef3.current) {
+            listRef3.current.scrollTop = 0;
+          }
     }, [value]);
 
     return (
@@ -39,6 +43,7 @@ const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetail
                             >
                             <Tab value={0} label="Películas" />
                             <Tab value={1} label="Series de TV" />
+                            <Tab value={2} label="Personas" />
                         </Tabs>
                     </Box>
                     {
@@ -46,18 +51,19 @@ const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetail
                     //El ul es el contenedor de cada lista por ende le asigno la ref diferente a cada uno
                         <ul ref={listRef1}>
                         {listMovies?.map((item, index) => {
-                                    return <ItemSearch
-                                                key={index} 
-                                                id={item.id}
-                                                poster={item.poster_path}
-                                                title={item.name || item.title}
-                                                mediaType={item.media_type}
-                                                year={item.release_date || item.first_air_date}
-                                                character={item.character}
-                                                setId={setId}
-                                                setMedia={setMedia}
-                                                setChangeDetails={setChangeDetails}
-                                            />
+                            return <ItemSearch
+                                        key={index} 
+                                        id={item.id}
+                                        poster={item.poster_path}
+                                        title={item.name || item.title}
+                                        mediaType={item.media_type}
+                                        year={item.release_date || item.first_air_date}
+                                        character={item.character}
+                                        setId={setId}
+                                        setMedia={setMedia}
+                                        setTypeDetails={setTypeDetails}
+                                        setShowDetails={setShowDetails}
+                                    />
                                         
                             })}
                         </ul>
@@ -67,18 +73,39 @@ const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetail
                     value === 1 ?
                         <ul ref={listRef2}>
                         {listSeries?.map((item, index) => {
-                                        return <ItemSearch
-                                                    key={index} 
-                                                    id={item.id}
-                                                    poster={item.poster_path}
-                                                    title={item.name || item.title}
-                                                    mediaType={item.media_type}
-                                                    year={item.release_date || item.first_air_date}
-                                                    character={item.character}
-                                                    setId={setId}
-                                                    setMedia={setMedia}
-                                                    setChangeDetails={setChangeDetails}
-                                                />
+                            return <ItemSearch
+                                        key={index} 
+                                        id={item.id}
+                                        poster={item.poster_path}
+                                        title={item.name || item.title}
+                                        mediaType={item.media_type}
+                                        year={item.release_date || item.first_air_date}
+                                        character={item.character}
+                                        setId={setId}
+                                        setMedia={setMedia}
+                                        setTypeDetails={setTypeDetails}
+                                        setShowDetails={setShowDetails}
+                                    />
+                                        
+                        })}
+                        </ul>
+                    : null
+                    }
+                    {
+                    value === 2 ?
+                        <ul ref={listRef3}>
+                        {listPeople?.map((item, index) => {
+                            return <ItemSearch
+                                        key={index} 
+                                        id={item.id}
+                                        poster={item.profile_path}
+                                        title={item.name || item.title}
+                                        mediaType={item.media_type}
+                                        setId={setId}
+                                        setMedia={setMedia}
+                                        setTypeDetails={setTypeDetails}
+                                        setShowDetails={setShowDetails}
+                                    />
                                         
                         })}
                         </ul>
