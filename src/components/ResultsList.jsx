@@ -33,8 +33,8 @@ const ResultsList = ({inputSearch}) => {
         //Filtro los datos para que solo sean películas y series de tv
         const filterResults = (obj) => {
             const onlyMoviesAndTv = obj.results && obj.results.filter((item) => item.media_type !== 'person')
-            const movieslistForActor = onlyMoviesAndTv?.filter((item) => item.media_type === 'movie')
-            const seriesListForActor = onlyMoviesAndTv?.filter((item) => item.media_type === 'tv')
+            const movieslistForActor = onlyMoviesAndTv?.filter((item) => item.media_type === 'movie').sort((a, b) => b.popularity - a.popularity)
+            const seriesListForActor = onlyMoviesAndTv?.filter((item) => item.media_type === 'tv').sort((a, b) => b.popularity - a.popularity)
             setOnlyMovies(movieslistForActor)
             setOnlySeries(seriesListForActor)
             setListQuery(onlyMoviesAndTv)

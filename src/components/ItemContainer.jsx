@@ -1,18 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import { Tab } from '@mui/material';
+import { Tabs } from '@mui/material';
 import ItemSearch from "./ItemSearch";
 
 import './../scss/ItemContainer.scss'
 
 const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetails}) => {
-    const [value, setValue] = useState('1');
+    const [value, setValue] = useState(0);
+    /* useRef para crear una referencia a cada contenedor de las listas, las guardo en otra variable aparte */
+    const listRef1 = useRef(null);
+    const listRef2 = useRef(null);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
+    /* Aqui detecto cual listRef esta activo, dependiendo si el componente esta montado o no
+    para luego accedo a su propiedad scrollTop y la pongo en 0. 
+    Todo esto es para que al cambiar entre una lista y otra el scroll se ubique al principio*/
+    useEffect(() => {
+        if (listRef1.current) {
+          listRef1.current.scrollTop = 0;
+        }
+        if (listRef2.current) {
+          listRef2.current.scrollTop = 0;
+        }
+    }, [value]);
 
     return (
         <div className="list">
@@ -23,44 +37,53 @@ const ItemContainer = ({listMovies, listSeries, setId, setMedia, setChangeDetail
                             onChange={handleChange}
                             variant="fullWidth"
                             >
-                            <Tab value="1" label="Películas" />
-                            <Tab value="2" label="Series de TV" />
+                            <Tab value={0} label="Películas" />
+                            <Tab value={1} label="Series de TV" />
                         </Tabs>
                     </Box>
-                <ul>
                     {
-                     value === '1' && listMovies?.map((item, index) => {
-                                return <ItemSearch 
-                                    key={index}
-                                    id={item.id}
-                                    poster={item.poster_path}
-                                    title={item.name || item.title}
-                                    mediaType={item.media_type}
-                                    year={item.release_date || item.first_air_date}
-                                    character={item.character}
-                                    setId={setId}
-                                    setMedia={setMedia}
-                                    setChangeDetails={setChangeDetails}
-                                />
-                        })
+                    value === 0 ? 
+                    //El ul es el contenedor de cada lista por ende le asigno la ref diferente a cada uno
+                        <ul ref={listRef1}>
+                        {listMovies?.map((item, index) => {
+                                    return <ItemSearch
+                                                key={index} 
+                                                id={item.id}
+                                                poster={item.poster_path}
+                                                title={item.name || item.title}
+                                                mediaType={item.media_type}
+                                                year={item.release_date || item.first_air_date}
+                                                character={item.character}
+                                                setId={setId}
+                                                setMedia={setMedia}
+                                                setChangeDetails={setChangeDetails}
+                                            />
+                                        
+                            })}
+                        </ul>
+                        : null
                     }
                     {
-                    value === '2' && listSeries?.map((item, index) => {
-                                return <ItemSearch 
-                                    key={index}
-                                    id={item.id}
-                                    poster={item.poster_path}
-                                    title={item.name || item.title}
-                                    mediaType={item.media_type}
-                                    year={item.release_date || item.first_air_date}
-                                    character={item.character}
-                                    setId={setId}
-                                    setMedia={setMedia}
-                                    setChangeDetails={setChangeDetails}
-                                />
-                        })
+                    value === 1 ?
+                        <ul ref={listRef2}>
+                        {listSeries?.map((item, index) => {
+                                        return <ItemSearch
+                                                    key={index} 
+                                                    id={item.id}
+                                                    poster={item.poster_path}
+                                                    title={item.name || item.title}
+                                                    mediaType={item.media_type}
+                                                    year={item.release_date || item.first_air_date}
+                                                    character={item.character}
+                                                    setId={setId}
+                                                    setMedia={setMedia}
+                                                    setChangeDetails={setChangeDetails}
+                                                />
+                                        
+                        })}
+                        </ul>
+                    : null
                     }
-                </ul>
             </Box>
         </div>
     );
