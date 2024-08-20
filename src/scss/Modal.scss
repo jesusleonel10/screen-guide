@@ -12,6 +12,7 @@
     background: rgba(0,0,0, .7);
     z-index: 4;
     overflow-y: scroll;
+    overflow-x: hidden;
 
     .container-modal {
         margin: 1rem;

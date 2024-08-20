@@ -3,12 +3,10 @@ import ItemSlider from './ItemSlider';
 import Info from './Info';
 import Modal from './Modal';
 import Loading from './Loading';
-
 import './../scss/Slider.scss'
 const Slider = ({loading, trending, timeWindow, setTimeWindow}) => {
   // const {modal} = useContext(ContextQuery)
   const [modal, setModal] = useState(false);
-
   const [id, setId] = useState('');
   const [media, setMedia] = useState('');
 
@@ -92,12 +90,13 @@ const Slider = ({loading, trending, timeWindow, setTimeWindow}) => {
   </div>
         {
           modal &&
-          <Modal header='Información' setModal={setModal}>
-              <Info 
-                id={id}
-                media={media}
-              />
-          </Modal>
+            <Modal header='Información' modal={modal} setModal={setModal}>   
+                <Info 
+                  id={id}
+                  media={media}
+                  type={media}
+                />
+            </Modal>
         }
 </>
     );

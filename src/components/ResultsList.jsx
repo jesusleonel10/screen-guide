@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
 import Loading from './Loading'
-import ItemSearch from './ItemSearch'
 import useFetchData from '../hooks/useFetchData'
 import Info from './Info'
 import Pages from './Pages'
+import ItemContainer from './ItemContainer'
 
 import './../scss/ResultsList.scss'
 
@@ -11,26 +11,37 @@ import './../scss/ResultsList.scss'
 const ResultsList = ({inputSearch}) => {
     //Esta flag para poder mostrar o no el Details dentro del modal que ya esta renderizado
     const [showDetails, setShowDetails] = useState(false);
-    const [id, setId] = useState('');
-    const [media, setMedia] = useState('');
 
+    const [id, setId] = useState(null);
+    const [media, setMedia] = useState(null);
+    //Flag para saber si el input esta vacio o no
     const [empty, setEmpty] = useState(false);
 
     //Estado del input al iniciar sera el del input anterior
     const [inputSearchList, setInputSearchList] = useState(inputSearch);
     //Estado para guardar la nueva consulta
-    const [listQuery, setListQuery] = useState([]);
+    // const [listQuery, setListQuery] = useState(null);
+    const [onlyMovies, setOnlyMovies] = useState(null);
+    const [onlySeries, setOnlySeries] = useState(null);
+    const [onlyPeople, setOnlyPeople] = useState(null);
+
     //Paginacion
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    //Consulta a la api
     const { data, loading } = useFetchData(`https://api.themoviedb.org/3/search/multi?query=${inputSearchList}&include_adult=false&language=es-MX&page=${page}`, inputSearchList)
     
     useEffect(() => {
 
         //Filtro los datos para que solo sean películas y series de tv
         const filterResults = (obj) => {
-            const onlyMoviesAndTv = obj.results && obj.results.filter((item) => item.media_type !== 'person')
-            setListQuery(onlyMoviesAndTv)
+            const results = obj.results
+            const movieslist = results && results.filter((item) => item.media_type === 'movie').sort((a, b) => b.popularity - a.popularity)
+            const seriesList = results && results.filter((item) => item.media_type === 'tv').sort((a, b) => b.popularity - a.popularity)
+            const peopleList = results && results.filter((item) => item.media_type === 'person').sort((a, b) => b.popularity - a.popularity)
+            setOnlyMovies(movieslist)
+            setOnlySeries(seriesList)
+            setOnlyPeople(peopleList)
         }
 
         filterResults(data)
@@ -58,11 +69,13 @@ const ResultsList = ({inputSearch}) => {
         }
     }
     return (
-        <>
+        <> 
             {showDetails ?
+            //Si es true, quito el ResultList para mostrar Info el resto de componentes dentro de él
                     <Info 
                         id={id}
                         media={media}
+                        type={media}
                     />
                 :
                 <div className="container-modal__search">
@@ -72,7 +85,7 @@ const ResultsList = ({inputSearch}) => {
                             <input 
                                 id="search" 
                                 type="text" 
-                                placeholder="Ingresa el nombre de alguna película o serie de TV" 
+                                placeholder="Ingresa el nombre de alguna película, serie de TV o celebridad" 
                                 required="required"
                                 value={inputSearchList}
                                 //Capturamos cada cambio en el input y lo actualizamos al estado global
@@ -80,7 +93,6 @@ const ResultsList = ({inputSearch}) => {
                             />
                         </form>
                     </div>
-                    <div className="list">
                         {empty ?
                             <div className="empty">
                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -89,33 +101,20 @@ const ResultsList = ({inputSearch}) => {
                             : loading ?
                             <Loading />
                             :
-                        <ul>
-                            {
-                            
-                                listQuery?.map((item, index) => {
-                                        return <ItemSearch 
-                                            key={index}
-                                            id={item.id}
-                                            poster={item.poster_path}
-                                            title={item.name || item.title}
-                                            mediaType={item.media_type}
-                                            year={item.release_date || item.first_air_date}
-                                            votes={item.vote_average}
-                                            votesCount={item.vote_count}
-                                            setId={setId}
-                                            setMedia={setMedia}
-                                            setShowDetails={setShowDetails}
-                                        />
-                                })
+                            <ItemContainer 
+                                listPeople={onlyPeople}
+                                listMovies={onlyMovies}
+                                listSeries={onlySeries}
+                                setId={setId}
+                                setMedia={setMedia}
+                                setShowDetails={setShowDetails}
+                            />
                             }
-                        </ul>
-                            }
-                    </div>
-                    <Pages 
-                        page={page}
-                        setPage={setPage}
-                        totalpages={totalPages}
-                    />
+                            <Pages 
+                                page={page}
+                                setPage={setPage}
+                                totalpages={totalPages}
+                            />
                 </div>
             }
         </>

@@ -1,59 +1,40 @@
-import formatDate from "../functions/formatDate";
-import formatTime from "../functions/formatTime";
+import MovieSeriesTV from "./MovieSeriesTV";
+import People from "./People"
+import Loading from "./Loading";
+import useFetchData from '../hooks/useFetchData'
 import './../scss/Details.scss'
 
+const Details = ({typeDetails, idDetails, mediaDetails}) => {
+    /* 
+    changeDetails lo recibo aqui para pasarselo al hook custom
+    hago esto para cambiarle el valor al mismo tiempo que 'loading' en el hook
+    de esta manera cuando changeDetails cambie, va a esperar al hook por que éste es asincrono
+    con esto evito pasar del componente MovieSeriesTV a People antes de que el hook termine
+    */
+    //Con esta funcion primero verifico el type, para luego si usar el hook dependiendo del type cambio el url para la llamada de la api
+    const getUrl = (type) => {
+        switch (type) {
+            case 'movie' :
+                return `https://api.themoviedb.org/3/${mediaDetails}/${idDetails}?language=es-MX`;
+            case 'tv' :
+                return `https://api.themoviedb.org/3/${mediaDetails}/${idDetails}?language=es-MX`;
+            case 'person':
+                return `https://api.themoviedb.org/3/person/${idDetails}?language=es-MX`
+            default:
+                return  `https://api.themoviedb.org/3/${mediaDetails}/${idDetails}?language=es-MX`;
+            }
+        }
+    const { data, loading, changeFlag } = useFetchData(getUrl(typeDetails), mediaDetails, typeDetails)
 
-const Details = ({poster, name, date, overview, genres, media, runtime, number_of_seasons, production, languages}) => {
     return (
             <>
-                <div className='poster'>
-                    <img src={`https://image.tmdb.org/t/p/w500/${poster}`} alt="Poster de la pelicula o serie de TV" />
-                </div>
-                <div className="details_movie">
-                    <div className="title">
-                        <h2>{name}</h2>
-                        <div className='release'><h4>Fecha de Estreno:</h4><p>{formatDate(date)}</p></div>
-                    </div>
-                    <div className='overview'>
-                        <h3>Resumen:</h3><p>{overview}</p>
-                    </div>
-                    <div className='genres'>
-                        <h3>Generos:</h3> 
-                            {
-                                genres?.map((item, index) => {
-                                    return <p className='genre' key={index}>{item.name}</p>
-                                })
-                            }
-                    </div>
-                    <div className="runtime">
-                            {
-                                media === 'movie' ?
-                                <>
-                                    <h3>Duración:</h3><p>{formatTime(runtime)}</p>
-                                </>
-                                :
-                                <>
-                                    <h3>Temporadas:</h3><p>{number_of_seasons}</p>
-                                </>
-                            }
-                            </div>
-                    <div className="country">
-                        <h3>Pais de Origen:</h3>
-                        {
-                            production?.map((item, index) => {
-                                return <p key={index}>{item.name}</p>
-                            })
-                        }
-                    </div>
-                    <div className="languague">
-                        <h3>Idioma:</h3>
-                        {
-                            languages?.map((item, index) => {
-                                return <p key={index}>{item.english_name}</p>
-                            })
-                        }
-                    </div>
-                </div>
+               {loading ?
+                <Loading />
+                : changeFlag === 'movie' || changeFlag === 'tv' ? 
+                <MovieSeriesTV data={data}/> 
+                : 
+                <People data={data} />
+                }
             </>
         );
 }

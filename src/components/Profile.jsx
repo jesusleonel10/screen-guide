@@ -1,8 +1,14 @@
 import './../scss/Profile.scss'
 
-const Profile = ({photo, name, character, job}) => {
+const Profile = ({id, photo, name, character, job, setTypeDetails, setIdDetails}) => {
+
+    const handleClick = () => {
+        setTypeDetails('person')
+        setIdDetails(id)
+    }
+
     return (
-        <div className="card_profile">
+        <div className="card_profile" onClick={handleClick}>
             <div className="card_profile__photo">
                 {
                     photo ?

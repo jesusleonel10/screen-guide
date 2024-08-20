@@ -1,4 +1,4 @@
-import {useState, useEffect, Fragment} from 'react'
+import {useState, useEffect} from 'react'
 import Loading from './Loading';
 import Provider from './Provider';
 import ScrollingWidget from './ScrollingWidget';
@@ -39,15 +39,13 @@ const WatchProvider = ({idQuery, mediatype}) => {
             {   
                 //Muestro animacion de carga mientras sea true
                  loading ?
-                 <div className='loading_provider'>
                      <Loading />
-                 </div>
                 //Al ser false, termina la carga
                  :
                 //Confirmo si regionProvider tiene los datos o esta vacio
                  regionProvider ?
                 //Si tiene los datos muestro el componente ahora si
-                 <Fragment>
+                 <>
                  {regionProvider.flatrate ?
 
                     <ScrollingWidget
@@ -104,7 +102,7 @@ const WatchProvider = ({idQuery, mediatype}) => {
                         })}
                     </ScrollingWidget>
                 : null}
-                </Fragment>
+                </>
             //Si no tenia los datos del proovedor entonces solamente muestra la card sin mas    
             : 
             <ScrollingWidget

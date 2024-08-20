@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 
-const useFetchData = (url, flag) => {
+const useFetchData = (url, flag, flagDetails) => {
     //Definimos los estados para guardar los datos de la API, la flag para el loading y guardar el error en caso de que ocurra
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    /*
+    La segunda flag primero la creo, luego al terminar la llamada de la api
+    le paso el valor que recibi por props
+    */
+    const [changeFlag, setChangeFlag] = useState(null);
 
     useEffect(() => {
     //Al haber cambios en el url confirmamos que loading sea true para que luego pase a false, de lo contrario no habria animacion de carga 
@@ -44,13 +49,15 @@ const useFetchData = (url, flag) => {
             setTimeout(() => {
                 setLoading(false)
             }, 300);
+            //Aqui le paso el valor que recibi por prop
+            setChangeFlag(flagDetails)
         }
      };
      fetchData();
     }
-}, [url, flag]);
+}, [url, flag, flagDetails]);
 
-    return { data, loading, error };
+    return { data, loading, error, changeFlag };
 }
 
  

@@ -9,16 +9,15 @@ import formatLocation from '../functions/formatLocation';
 import Pages from './Pages';
 
 import styled from 'styled-components';
-import './../scss/List.scss'
+import './../scss/CardList.scss'
 
-const List = () => { 
-
+const CardList = () => { 
+    //Flag para mostrar o no el modal
     const [modal, setModal] = useState(false);
-
     const [page, setPage] = useState(1);
 
-    const [id, setId] = useState('');
-    const [media, setMedia] = useState('');
+    const [id, setId] = useState(null);
+    const [media, setMedia] = useState(null);
     //Definir el filtro de la busqueda entre popular, mejores valorados etc...
     const [category, setCategory] = useState('popular');
     //Estado para obtener la ruta actual
@@ -34,6 +33,8 @@ const List = () => {
       setPage(1)
     }, [location]);
 
+
+    console.log(media);
     return (
             <>
                 <Filters 
@@ -79,10 +80,11 @@ const List = () => {
             {
                 //Al cambiar el type cambio el componente dentro de modal
                 modal &&
-                <Modal header='Información' setModal={setModal}>
+                <Modal header='Información' modal={modal} setModal={setModal}>
                     <Info 
                         id={id}
                         media={media}
+                        type={media}
                     />
                 </Modal>
             }
@@ -90,7 +92,7 @@ const List = () => {
     );
 }
  
-export default List;
+export default CardList;
 
 
 const animationCard = () => {

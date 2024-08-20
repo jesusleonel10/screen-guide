@@ -1,12 +1,15 @@
 import formatDateYear from "./../functions/formatDateYear";
-import './../scss/ItemSearch.scss'
 
-const ItemSearch = ({id, title, poster, mediaType, year, setId, setMedia, setShowDetails}) => {
+const ItemSearch = ({id, title, poster, mediaType, year, character, setId, setMedia, setTypeDetails, setShowDetails}) => {
 
     const handleClick = (id, media) => {
         setId(id)
         setMedia(media)
-        setShowDetails(true)
+        //Si la flag de typeDetails esta definida la cambiamos
+        setTypeDetails && setTypeDetails(media)
+        //Si la flag de showDetails esta definida la pasamos a true
+        //Esta es para poder mostrar quitar ResultList y mostrar Details al hacer click en algun resultado
+        setShowDetails && setShowDetails(true)
     }
     
     return (
@@ -17,9 +20,11 @@ const ItemSearch = ({id, title, poster, mediaType, year, setId, setMedia, setSho
                 <div className="item-list__poster">
                     <img className='' alt="Poster de la pelicula o serie de tv" src={`https://image.tmdb.org/t/p/w500/${poster}`}></img>
                 </div>
-                <p className="item-list__title">{title}</p>
-                <span className="item-list__media">{mediaType === 'tv' ? 'Serie de TV' : 'Película'}</span>
-                <span className="item-list__year">{formatDateYear(year)}</span>
+                <div className="item-list__title">
+                   <p>{title}</p>
+                   {character && <p className="character">Personaje: <span>{character}</span></p>}
+                </div>
+                {year && <span className="item-list__year">{formatDateYear(year)}</span>}
             </li>
         }
         </>
