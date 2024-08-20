@@ -2,7 +2,6 @@ import MovieSeriesTV from "./MovieSeriesTV";
 import People from "./People"
 import Loading from "./Loading";
 import useFetchData from '../hooks/useFetchData'
-
 import './../scss/Details.scss'
 
 const Details = ({changeDetails, idDetails, mediaDetails}) => {
@@ -29,7 +28,7 @@ const Details = ({changeDetails, idDetails, mediaDetails}) => {
             <>
                {loading ?
                 <Loading />
-                :  changeFlag ? <MovieSeriesTV data={data} /> : <People data={data} />
+                :  changeFlag ? <MovieSeriesTV data={data}/> : <People data={data} />
                 }
             </>
         );

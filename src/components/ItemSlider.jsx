@@ -1,16 +1,9 @@
 import styled from "styled-components";
 
 const ItemSlider = ({id, mediatype, title, overview, poster, backdrop, setMedia, setId, setModal}) => {
-    
-    // const {setModal} = useContext(ContextQuery)
 
     const handleClick = (id, modal, mediatype) => {
-        // const updateModal = {...modal}
-        // updateModal.type = 'details'
-        // setModal(updateModal)
-
         setModal(modal)
-
         setId(id)
         setMedia(mediatype)
     }

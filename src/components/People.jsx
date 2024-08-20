@@ -1,4 +1,6 @@
 import formatDate from "../functions/formatDate";
+import { Fade } from "@mui/material";
+
 
 const genders = [
     { id: 0,  valor: 'No Especifica'},
@@ -11,7 +13,9 @@ const People = ({data}) => {
     return (
         <>
             <div className='poster'>
-                <img src={`https://image.tmdb.org/t/p/w500/${data.profile_path}`} alt="Foto de la persona" />
+                <Fade in={true} timeout={500}>
+                    <img src={`https://image.tmdb.org/t/p/w500/${data.profile_path}`} alt="Foto de la persona" />
+                </Fade>
             </div>
             <div className="details">
                 <div className="title">

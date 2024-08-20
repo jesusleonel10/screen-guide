@@ -79,7 +79,7 @@ const CardList = () => {
             {
                 //Al cambiar el type cambio el componente dentro de modal
                 modal &&
-                <Modal header='Información' setModal={setModal}>
+                <Modal header='Información' modal={modal} setModal={setModal}>
                     <Info 
                         id={id}
                         media={media}

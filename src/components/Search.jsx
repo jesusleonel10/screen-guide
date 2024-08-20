@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ResultsList from './ResultsList'
 import Modal from './Modal';
 import InfiniteScroll from './InfiniteScroll'
-import Tag from './Tag';
+import Poster from './Poster';
 
 import './../scss/Search.scss'
 
@@ -70,7 +70,7 @@ const Search = ({trending}) => {
                 {[...new Array(rows)]?.map((_, i) => (
                     <InfiniteScroll key={i} duration={randomValue} reverse={i % 2}>
                     {shuffleValue?.slice(0, image_per_row)?.map(tag => (
-                        <Tag poster={tag} key={tag}/>
+                        <Poster poster={tag} key={tag}/>
                     ))}
                     </InfiniteScroll>
                 ))}
@@ -79,7 +79,7 @@ const Search = ({trending}) => {
             
             {//Al cambiar el type cambio el componente dentro de modal
             modal &&
-            <Modal header='Buscar Película o Serie de TV' setModal={setModal}>
+            <Modal header='Buscar Película o Serie de TV' modal={modal} setModal={setModal}>
                 <ResultsList 
                     inputSearch={inputSearch}
                     setInputSearch={setInputSearch}
