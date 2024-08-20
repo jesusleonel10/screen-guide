@@ -32,18 +32,19 @@ const Info = ({id, media, change}) => {
                                 mediatype={mediaDetails}
                             />
                         </div>
-                        : null
-                    }
-                    {
-                        !changeDetails ?
+                        : 
                         <Filmography
                             idDetails={idDetails}
                             mediaDetails={mediaDetails} 
                             setChangeDetails={setChangeDetails}
                             setIdDetails={setIdDetails}
                             setMediaDetails={setMediaDetails}
-                        /> : null
+                        />
                     }
+                    
+                        
+                        
+                    
             </div>
         </>
     );

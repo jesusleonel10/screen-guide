@@ -1,4 +1,3 @@
-import {Fragment} from 'react'
 import Loading from './Loading';
 import ScrollingWidget from './ScrollingWidget';
 import Profile from './Profile';
@@ -19,7 +18,7 @@ const Credits = ({idQuery, mediatype, setChangeDetails, setIdDetails}) => {
                     <Loading />
                 //Al pasar a false termina la carga y mostramos el componente
                     :
-                    <Fragment>
+                    <>
                         <ScrollingWidget
                             showHeader={true}
                             textHeader='Reparto'
@@ -91,7 +90,7 @@ const Credits = ({idQuery, mediatype, setChangeDetails, setIdDetails}) => {
                             })
                         }
                         </ScrollingWidget>
-                    </Fragment>
+                    </>
                 }
             </div>
         </>

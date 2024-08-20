@@ -31,23 +31,25 @@ const Filmography = ({idDetails, mediaDetails, setChangeDetails, setIdDetails, s
     // console.log(data.cast);
 
     return (
-       <>
+        <>
+            <div className="filmography">
             {
                 loading ?
                 <Loading />
                 :
-                <div className="filmography">
-                    <h2 className='filmography__title'>Películas y Series</h2>
-                    <ItemContainer 
-                        dataList={filmography}
-                        listMovies={onlyMovies}
-                        listSeries={onlySeries}
-                        setId={setIdDetails}
-                        setMedia={setMediaDetails}
-                        setChangeDetails={setChangeDetails}
-                    />
-                </div>
-            }
+                    <>
+                        <h2 className='filmography__title'>Películas y Series</h2>
+                        <ItemContainer 
+                            dataList={filmography}
+                            listMovies={onlyMovies}
+                            listSeries={onlySeries}
+                            setId={setIdDetails}
+                            setMedia={setMediaDetails}
+                            setChangeDetails={setChangeDetails}
+                        />
+                    </>
+                }
+            </div>
        </>
     );
 }
