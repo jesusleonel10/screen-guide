@@ -31,7 +31,7 @@ const Details = ({typeDetails, idDetails, mediaDetails}) => {
                {loading ?
                 <Loading />
                 : changeFlag === 'movie' || changeFlag === 'tv' ? 
-                <MovieSeriesTV data={data}/> 
+                <MovieSeriesTV data={data} media={mediaDetails}/> 
                 : 
                 <People data={data} />
                 }

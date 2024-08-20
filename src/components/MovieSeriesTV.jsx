@@ -2,7 +2,7 @@ import { Fade } from "@mui/material";
 import formatDate from "../functions/formatDate";
 import formatTime from "../functions/formatTime";
 
-const MovieSeriesTV = ({data}) => {
+const MovieSeriesTV = ({data, media}) => {
     return (
         <>
             <div className='poster'>   
@@ -28,7 +28,7 @@ const MovieSeriesTV = ({data}) => {
                 </div>
                 <div className="runtime">
                         {
-                            data.media === 'movie' ?
+                            media === 'movie' ?
                             <>
                                 <h3>Duración:</h3><p>{formatTime(data.runtime)}</p>
                             </>
