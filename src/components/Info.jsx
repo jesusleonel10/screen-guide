@@ -18,7 +18,7 @@ const Info = ({id, media, change}) => {
                         mediaDetails={mediaDetails}
                         changeDetails={changeDetails}
                     />
-                    {
+                        {
                         changeDetails ?
                         <div className='widgets'>
                             <Credits 
@@ -40,11 +40,7 @@ const Info = ({id, media, change}) => {
                             setIdDetails={setIdDetails}
                             setMediaDetails={setMediaDetails}
                         />
-                    }
-                    
-                        
-                        
-                    
+                        }  
             </div>
         </>
     );
