@@ -43,7 +43,7 @@ const ItemContainer = ({listMovies, listSeries, listPeople, setId, setMedia, set
                             >
                             <Tab value={0} label="Películas" />
                             <Tab value={1} label="Series de TV" />
-                            <Tab value={2} label="Personas" />
+                            {listPeople && <Tab value={2} label="Personas" />}
                         </Tabs>
                     </Box>
                     {
@@ -92,7 +92,7 @@ const ItemContainer = ({listMovies, listSeries, listPeople, setId, setMedia, set
                     : null
                     }
                     {
-                    value === 2 ?
+                    listPeople && value === 2 ?
                         <ul ref={listRef3}>
                         {listPeople?.map((item, index) => {
                             return <ItemSearch
