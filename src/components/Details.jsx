@@ -28,7 +28,7 @@ const Details = ({changeDetails, idDetails, mediaDetails}) => {
             <>
                {loading ?
                 <Loading />
-                :  changeFlag ? <MovieSeriesTV data={data}/> : <People data={data} />
+                : changeFlag ? <MovieSeriesTV data={data}/> : <People data={data} />
                 }
             </>
         );

@@ -1,15 +1,16 @@
+import { Fade } from "@mui/material";
 import formatDate from "../functions/formatDate";
 import formatTime from "../functions/formatTime";
 
 const MovieSeriesTV = ({data}) => {
     return (
         <>
-            <div className='poster'>
+            <div className='poster'>   
+                <Fade in={true} timeout={500}>
                     <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="Poster de la pelicula o serie de TV" />
-                
+                </Fade>
             </div>
             <div className="details">
-
                 <div className="title">
                     <h2>{data.title || data.name}</h2>
                     <div className='release'><h4>Fecha de Estreno:</h4><p>{formatDate(data.release_date || data.first_air_date)}</p></div>
