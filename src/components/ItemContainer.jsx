@@ -6,12 +6,11 @@ import ItemSearch from "./ItemSearch";
 
 import './../scss/ItemContainer.scss'
 
-const ItemContainer = ({listMovies, listSeries, listPeople, setId, setMedia, setTypeDetails, setShowDetails}) => {
+const ItemContainer = ({from, dataList, listMovies, listSeries, setId, setMedia, setTypeDetails, setShowDetails}) => {
     const [value, setValue] = useState(0);
     /* useRef para crear una referencia a cada contenedor de las listas, las guardo en otra variable aparte */
     const listRef1 = useRef(null);
     const listRef2 = useRef(null);
-    const listRef3 = useRef(null);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -27,12 +26,32 @@ const ItemContainer = ({listMovies, listSeries, listPeople, setId, setMedia, set
         if (listRef2.current) {
           listRef2.current.scrollTop = 0;
         }
-        if (listRef3.current) {
-            listRef3.current.scrollTop = 0;
-          }
     }, [value]);
 
     return (
+        <> 
+        {dataList ? 
+        <div className="list">
+            <ul>
+                {dataList?.map((item, index) => {
+                return <ItemSearch
+                            key={index} 
+                            id={item.id}
+                            from={from}
+                            poster={item.poster_path || item.profile_path}
+                            title={item.name || item.title}
+                            mediaType={item.media_type}
+                            year={item.release_date || item.first_air_date}
+                            setId={setId}
+                            setMedia={setMedia}
+                            setTypeDetails={setTypeDetails}
+                            setShowDetails={setShowDetails}
+                        />
+                                            
+                })}
+            </ul>
+        </div>
+        :
         <div className="list">
                 <Box  sx={{ width: '100%' }} >
                     <Box sx={{ borderBottom: 1, borderColor: 'divider'}} >
@@ -43,7 +62,6 @@ const ItemContainer = ({listMovies, listSeries, listPeople, setId, setMedia, set
                             >
                             <Tab value={0} label="Películas" />
                             <Tab value={1} label="Series de TV" />
-                            {listPeople && <Tab value={2} label="Personas" />}
                         </Tabs>
                     </Box>
                     {
@@ -91,28 +109,10 @@ const ItemContainer = ({listMovies, listSeries, listPeople, setId, setMedia, set
                         </ul>
                     : null
                     }
-                    {
-                    listPeople && value === 2 ?
-                        <ul ref={listRef3}>
-                        {listPeople?.map((item, index) => {
-                            return <ItemSearch
-                                        key={index} 
-                                        id={item.id}
-                                        poster={item.profile_path}
-                                        title={item.name || item.title}
-                                        mediaType={item.media_type}
-                                        setId={setId}
-                                        setMedia={setMedia}
-                                        setTypeDetails={setTypeDetails}
-                                        setShowDetails={setShowDetails}
-                                    />
-                                        
-                        })}
-                        </ul>
-                    : null
-                    }
             </Box>
         </div>
+        }
+        </>
     );
 }
  

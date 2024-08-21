@@ -1,6 +1,12 @@
 import formatDateYear from "./../functions/formatDateYear";
 
-const ItemSearch = ({id, title, poster, mediaType, year, character, setId, setMedia, setTypeDetails, setShowDetails}) => {
+const ItemSearch = ({id, title, poster, mediaType, year, character, from, setId, setMedia, setTypeDetails, setShowDetails}) => {
+
+    const typeItem = [
+        { id: 0, type: 'movie',  valor: 'Película'},
+        { id: 1, type: 'tv',  valor: 'Serie de TV'},                  
+        { id: 2, type: 'person',  valor: 'Persona'}          
+    ]
 
     const handleClick = (id, media) => {
         setId(id)
@@ -24,6 +30,13 @@ const ItemSearch = ({id, title, poster, mediaType, year, character, setId, setMe
                    <p>{title}</p>
                    {character && <p className="character">Personaje: <span>{character}</span></p>}
                 </div>
+                {from === 'results' ? 
+                    typeItem.filter((item) => item.type === mediaType)
+                    .map((element, index) => {
+                        return <span className="item-list__media" key={index} >{element.valor}</span> 
+                    })
+                    : null
+                    }
                 {year && <span className="item-list__year">{formatDateYear(year)}</span>}
             </li>
         }

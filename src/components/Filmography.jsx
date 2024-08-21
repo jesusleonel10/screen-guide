@@ -7,7 +7,7 @@ import './../scss/Filmography.scss'
 
 const Filmography = ({idDetails, mediaDetails, setTypeDetails, setIdDetails, setMediaDetails}) => {
     //Estado para guardar la nueva consulta
-    const [filmography, setFilmography] = useState(null);
+    // const [filmography, setFilmography] = useState(null);
     const [onlyMovies, setOnlyMovies] = useState(null);
     const [onlySeries, setOnlySeries] = useState(null);
     const {data, loading} = useFetchData(`https://api.themoviedb.org/3/person/${idDetails}/combined_credits?language=es-MX`, mediaDetails)
@@ -26,14 +26,11 @@ const Filmography = ({idDetails, mediaDetails, setTypeDetails, setIdDetails, set
             //Separo por movies y series
             setOnlyMovies(movieslistForActor)
             setOnlySeries(seriesListForActor)
-            setFilmography(onlyCastNoEpisodes)
+            // setFilmography(onlyCastNoEpisodes)
         }
         
         filterResults(data.cast)
     }, [data]);
-
-    // console.log(data.cast);
-
     return (
         <>
             <div className="filmography">
@@ -44,7 +41,7 @@ const Filmography = ({idDetails, mediaDetails, setTypeDetails, setIdDetails, set
                     <>
                         <h2 className='filmography__title'>Películas y Series</h2>
                         <ItemContainer 
-                            dataList={filmography}
+                            // dataList={filmography}
                             listMovies={onlyMovies}
                             listSeries={onlySeries}
                             setId={setIdDetails}

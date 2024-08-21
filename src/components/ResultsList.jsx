@@ -20,10 +20,7 @@ const ResultsList = ({inputSearch}) => {
     //Estado del input al iniciar sera el del input anterior
     const [inputSearchList, setInputSearchList] = useState(inputSearch);
     //Estado para guardar la nueva consulta
-    // const [listQuery, setListQuery] = useState(null);
-    const [onlyMovies, setOnlyMovies] = useState(null);
-    const [onlySeries, setOnlySeries] = useState(null);
-    const [onlyPeople, setOnlyPeople] = useState(null);
+    const [listQuery, setListQuery] = useState(null);
 
     //Paginacion
     const [page, setPage] = useState(1);
@@ -32,16 +29,10 @@ const ResultsList = ({inputSearch}) => {
     const { data, loading } = useFetchData(`https://api.themoviedb.org/3/search/multi?query=${inputSearchList}&include_adult=false&language=es-MX&page=${page}`, inputSearchList)
     
     useEffect(() => {
-
-        //Filtro los datos para que solo sean películas y series de tv
+        //Aqui solamente filtro para pasar los datos que estan dentro de .results
         const filterResults = (obj) => {
             const results = obj.results
-            const movieslist = results && results.filter((item) => item.media_type === 'movie').sort((a, b) => b.popularity - a.popularity)
-            const seriesList = results && results.filter((item) => item.media_type === 'tv').sort((a, b) => b.popularity - a.popularity)
-            const peopleList = results && results.filter((item) => item.media_type === 'person').sort((a, b) => b.popularity - a.popularity)
-            setOnlyMovies(movieslist)
-            setOnlySeries(seriesList)
-            setOnlyPeople(peopleList)
+            setListQuery(results)
         }
 
         filterResults(data)
@@ -101,10 +92,9 @@ const ResultsList = ({inputSearch}) => {
                             : loading ?
                             <Loading />
                             :
-                            <ItemContainer 
-                                listPeople={onlyPeople}
-                                listMovies={onlyMovies}
-                                listSeries={onlySeries}
+                            <ItemContainer
+                                from={'results'} 
+                                dataList={listQuery}
                                 setId={setId}
                                 setMedia={setMedia}
                                 setShowDetails={setShowDetails}
