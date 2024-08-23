@@ -32,9 +32,7 @@ const CardList = () => {
       setCategory('popular')
       setPage(1)
     }, [location]);
-
-
-    console.log(media);
+    
     return (
             <>
                 <Filters 

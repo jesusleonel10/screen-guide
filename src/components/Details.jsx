@@ -19,7 +19,7 @@ const Details = ({typeDetails, idDetails, mediaDetails}) => {
             case 'tv' :
                 return `https://api.themoviedb.org/3/${mediaDetails}/${idDetails}?language=es-MX`;
             case 'person':
-                return `https://api.themoviedb.org/3/person/${idDetails}?language=es-MX`
+                return `https://api.themoviedb.org/3/person/${idDetails}?language=en-US`
             default:
                 return  `https://api.themoviedb.org/3/${mediaDetails}/${idDetails}?language=es-MX`;
             }
