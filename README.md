@@ -1,8 +1,14 @@
-# React + Vite
+# Screen Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![](./screenshot.png)
 
-Currently, two official plugins are available:
+_App para buscar películas y series de TV, saber el reparto, directores y en que plataforma están disponibles._
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Construido con 🛠️
+
+* [React](https://es.react.dev/)
+* [Vite](https://vitejs.dev/)
+* [TMDB API](https://www.themoviedb.org/) - API usada para toda la información de películas y series
+* [Styled Components](https://styled-components.com/)
+* [SASS](https://sass-lang.com/) - Preprocesador CSS
+* [Axios](https://axios-http.com/es/docs/intro) - Para las consultas a la API
