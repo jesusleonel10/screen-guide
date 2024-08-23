@@ -17,7 +17,7 @@ const useFetchData = (url, flag, flagDetails) => {
     setLoading(true)
     //Uso flag para verificar primero que este definida para si hacer la llamada a la api, esto es mas que nada para cuando se recargue la pagina
     if(flag) {
-        const api_token = import.meta.env.VITE_API_KEY_TMDB
+        const api_token = import.meta.env.VITE_API_KEY
         const fetchData = async() => {
             
         try {
