@@ -1,4 +1,4 @@
-import MovieSeriesTV from "../MovieSeriesTV/MovieSeriesTV";
+import MovieTVShow from "../MovieTVShow/MovieTVShow";
 import People from "../People/People"
 import Loading from "../Loading/Loading";
 import useFetchData from '../../hooks/useFetchData'
@@ -9,7 +9,7 @@ const Details = ({typeDetails, idDetails, mediaDetails}) => {
     changeDetails lo recibo aqui para pasarselo al hook custom
     hago esto para cambiarle el valor al mismo tiempo que 'loading' en el hook
     de esta manera cuando changeDetails cambie, va a esperar al hook por que éste es asincrono
-    con esto evito pasar del componente MovieSeriesTV a People antes de que el hook termine
+    con esto evito pasar del componente MovieTVShow a People antes de que el hook termine
     */
     //Con esta funcion primero verifico el type, para luego si usar el hook dependiendo del type cambio el url para la llamada de la api
     const getUrl = (type) => {
@@ -31,7 +31,7 @@ const Details = ({typeDetails, idDetails, mediaDetails}) => {
                {loading ?
                 <Loading />
                 : changeFlag === 'movie' || changeFlag === 'tv' ? 
-                <MovieSeriesTV data={data} media={mediaDetails}/> 
+                <MovieTVShow data={data} media={mediaDetails}/> 
                 : 
                 <People data={data} />
                 }

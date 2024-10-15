@@ -2,7 +2,7 @@ import { Fade } from "@mui/material";
 import formatDate from "../../functions/formatDate";
 import formatTime from "../../functions/formatTime";
 
-const MovieSeriesTV = ({data, media}) => {
+const MovieTVShow = ({data, media}) => {
     return (
         <>
         {
@@ -64,4 +64,4 @@ const MovieSeriesTV = ({data, media}) => {
     );
 }
  
-export default MovieSeriesTV;
+export default MovieTVShow;
