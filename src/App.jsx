@@ -4,7 +4,7 @@ import About from './components/About';
 // import { ContextQuery } from './context/contextQuery';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import './scss/App.scss';
+import './App.scss';
 import Page404 from './components/Page404';
 import CardList from './components/CardList';
 
