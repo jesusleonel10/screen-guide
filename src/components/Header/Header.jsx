@@ -40,8 +40,6 @@ const Header = () => {
                     <li><NavLink to="/acerca-de" className="sidebar__items" onClick={() => handleClick()}>Acerca de</NavLink></li>
                 </ul>
             </div>
-
-            
             <nav className="menu">
                 <NavLink to="/" 
                     className="menu__items"
@@ -63,8 +61,6 @@ const Header = () => {
                     onClick={(e) => {handleClick(e);}}>Acerca de
                     
                 </NavLink>
-
-
             </nav>
             </div>
         </header>

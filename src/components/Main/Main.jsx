@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useFetchData from "../hooks/useFetchData";
-import Search from "./Search";
-import Slider from "./Slider";
+import useFetchData from "../../hooks/useFetchData";
+import Search from "../Search/Search";
+import Slider from "../Slider/Slider";
 
 const Main = () => {
     //Estado timewindows para hacer la consulta de tendencias entre dia y semana

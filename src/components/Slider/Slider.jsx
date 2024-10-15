@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
-import ItemSlider from './ItemSlider';
-import Info from './Info';
-import Modal from './Modal';
-import Loading from './Loading';
+import ItemSlider from '../ItemSlider/ItemSlider';
+import Info from '../Info/Info';
+import Modal from '../Modal/Modal';
+import Loading from '../Loading/Loading';
 import './Slider.scss'
 
 const Slider = ({loading, trending, timeWindow, setTimeWindow}) => {

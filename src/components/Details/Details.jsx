@@ -1,7 +1,7 @@
-import MovieSeriesTV from "./MovieSeriesTV";
-import People from "./People"
-import Loading from "./Loading";
-import useFetchData from '../hooks/useFetchData'
+import MovieSeriesTV from "../MovieSeriesTV/MovieSeriesTV";
+import People from "../People/People"
+import Loading from "../Loading/Loading";
+import useFetchData from '../../hooks/useFetchData'
 import './Details.scss'
 
 const Details = ({typeDetails, idDetails, mediaDetails}) => {

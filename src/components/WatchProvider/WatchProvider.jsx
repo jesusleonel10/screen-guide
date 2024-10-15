@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react'
-import Loading from './Loading';
-import Provider from './Provider';
-import ScrollingWidget from './ScrollingWidget';
-import useFetchData from '../hooks/useFetchData';
+import Loading from '../Loading/Loading';
+import Provider from '../Provider/Provider';
+import ScrollingWidget from '../ScrollingWidget/ScrollingWidget';
+import useFetchData from '../../hooks/useFetchData';
 import './WatchProvider.scss'
 
 const WatchProvider = ({idQuery, mediatype}) => {
@@ -10,7 +10,6 @@ const WatchProvider = ({idQuery, mediatype}) => {
     const [regionProvider, setRegionProvider] = useState({});
 
     const { data, loading } = useFetchData(`https://api.themoviedb.org/3/${mediatype}/${idQuery}/watch/providers`, mediatype)
-
 
   useEffect(() => {
     //Tras obtener lo datos de la api selecciono nada mas los resultados que tenga la region VE o US
@@ -45,7 +44,7 @@ const WatchProvider = ({idQuery, mediatype}) => {
                  regionProvider ?
                 //Si tiene los datos muestro el componente ahora si
                  <>
-                 {regionProvider.flatrate ?
+                 {regionProvider.flatrate &&
 
                     <ScrollingWidget
                         showHeader={true}
@@ -62,8 +61,8 @@ const WatchProvider = ({idQuery, mediatype}) => {
                              />
                         })}
                     </ScrollingWidget>
-                    : null}
-                {regionProvider.rent ? 
+                }
+                {regionProvider.rent && 
 
                 <ScrollingWidget
                     showHeader={true}
@@ -81,8 +80,8 @@ const WatchProvider = ({idQuery, mediatype}) => {
                              />
                         })}
                     </ScrollingWidget>
-                : null}
-                {regionProvider.buy ? 
+                }
+                {regionProvider.buy &&
                 
                 <ScrollingWidget
                     showHeader={true}
@@ -100,7 +99,7 @@ const WatchProvider = ({idQuery, mediatype}) => {
                              />
                         })}
                     </ScrollingWidget>
-                : null}
+                }
                 </>
             //Si no tenia los datos del proovedor entonces solamente muestra la card sin mas    
             : 
@@ -114,7 +113,6 @@ const WatchProvider = ({idQuery, mediatype}) => {
                 >
                     <Provider />
             </ScrollingWidget>
-            
             }
         </div>        
         </>

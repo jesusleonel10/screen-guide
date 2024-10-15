@@ -11,9 +11,7 @@ const Profile = ({id, photo, name, character, job, setTypeDetails, setIdDetails}
         <div className="card_profile" onClick={handleClick}>
             <div className="card_profile__photo">
                 {
-                    photo ?
-                    <img src={`https://image.tmdb.org/t/p/original${photo}`} alt="Foto" />
-                    : null
+                    photo && <img src={`https://image.tmdb.org/t/p/original${photo}`} alt="Foto" />
                 }
             </div>
             <div className="card_profile__details">

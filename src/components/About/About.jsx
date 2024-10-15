@@ -1,6 +1,6 @@
-import imageWeb from './../images/undraw_web_development_0l6v.svg'
-import logoTMDB from './../images/tmdb_logo.svg'
-import logoJustWatch from './../images/justwatch_logo.png'
+import imageWeb from './../../images/undraw_web_development_0l6v.svg'
+import logoTMDB from './../../images/tmdb_logo.svg'
+import logoJustWatch from './../../images/justwatch_logo.png'
 import './About.scss'
 
 //Aqui va los creditos hacia los dueños de la API

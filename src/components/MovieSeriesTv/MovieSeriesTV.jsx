@@ -1,10 +1,13 @@
 import { Fade } from "@mui/material";
-import formatDate from "../functions/formatDate";
-import formatTime from "../functions/formatTime";
+import formatDate from "../../functions/formatDate";
+import formatTime from "../../functions/formatTime";
 
 const MovieSeriesTV = ({data, media}) => {
     return (
         <>
+        {
+            data && 
+            <>
             <div className='poster'>   
                 <Fade in={true} timeout={500}>
                     <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="Poster de la pelicula o serie de TV" />
@@ -21,7 +24,7 @@ const MovieSeriesTV = ({data, media}) => {
                 <div className='genres'>
                     <h3>Generos:</h3> 
                         {
-                            data?.genres?.map((item, index) => {
+                            data.genres.map((item, index) => {
                                 return <p className='genre' key={index}>{item.name}</p>
                             })
                         }
@@ -41,7 +44,7 @@ const MovieSeriesTV = ({data, media}) => {
                 <div className="country">
                     <h3>Pais de Origen:</h3>
                     {
-                        data?.production_countries?.map((item, index) => {
+                        data.production_countries.map((item, index) => {
                             return <p key={index}>{item.name}</p>
                         })
                     }
@@ -49,12 +52,14 @@ const MovieSeriesTV = ({data, media}) => {
                 <div className="languague">
                     <h3>Idioma:</h3>
                     {
-                        data?.spoken_languages?.map((item, index) => {
+                        data.spoken_languages.map((item, index) => {
                             return <p key={index}>{item.english_name}</p>
                         })
                     }
                 </div>
             </div>
+            </>
+        }
         </>
     );
 }

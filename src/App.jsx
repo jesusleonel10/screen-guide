@@ -1,12 +1,10 @@
-import Header from './components/Header';
-import Main from './components/Main';
-import About from './components/About';
-// import { ContextQuery } from './context/contextQuery';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+import About from './components/About/About';
+import CardList from './components/CardList/CardList';
+import Page404 from './components/Page404/Page404';
 import './App.scss';
-import Page404 from './components/Page404';
-import CardList from './components/CardList';
 
 function App() {
   return (

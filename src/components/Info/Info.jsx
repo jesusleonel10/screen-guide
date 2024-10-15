@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import Details from './Details'
-import WatchProvider from './WatchProvider'
-import Credits from './Credits'
-import Filmography from './Filmography'
+import Details from '../Details/Details'
+import WatchProvider from '../WatchProvider/WatchProvider'
+import Credits from '../Credits/Credits'
+import Filmography from '../Filmography/Filmography'
 
 const Info = ({id, media, type}) => {
 

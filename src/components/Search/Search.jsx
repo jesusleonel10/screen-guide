@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import ResultsList from './ResultsList'
-import Modal from './Modal';
-import InfiniteScroll from './InfiniteScroll'
-import Poster from './Poster';
+import ResultsList from '../ResultsList/ResultsList'
+import Modal from '../Modal/Modal';
+import InfiniteScroll from '../InfiniteScroll/InfiniteScroll'
+import Poster from '../Poster/Poster';
 import './Search.scss'
 
 const Search = ({trending}) => {

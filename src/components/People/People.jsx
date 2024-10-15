@@ -1,5 +1,5 @@
 import { Fade } from "@mui/material";
-import formatDate from "../functions/formatDate";
+import formatDate from "../../functions/formatDate";
 
 const genders = [
     { id: 0,  valor: 'No Especifica'},

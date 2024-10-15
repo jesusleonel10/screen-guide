@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
-import Loading from './Loading'
-import useFetchData from '../hooks/useFetchData'
-import Info from './Info'
-import Pages from './Pages'
-import ItemContainer from './ItemContainer'
+import useFetchData from '../../hooks/useFetchData'
+import Loading from '../Loading/Loading'
+import Info from '../Info/Info'
+import Pages from '../Pages/Pages'
+import ItemContainer from '../ItemContainer/ItemContainer'
 import './ResultsList.scss'
 
 const ResultsList = ({inputSearch}) => {

@@ -1,8 +1,6 @@
 import {useState, useEffect} from 'react'
 import './Filters.scss'
 
-
-
 const Filters = ({mediatype, setPage, setCategory}) => {
 
     const [categoryMenu, setCategoryMenu] = useState([]);

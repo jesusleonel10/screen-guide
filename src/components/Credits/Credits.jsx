@@ -1,9 +1,8 @@
-import Loading from './Loading';
-import ScrollingWidget from './ScrollingWidget';
-import Profile from './Profile';
-import useFetchData from '../hooks/useFetchData';
+import Loading from '../Loading/Loading';
+import ScrollingWidget from '../ScrollingWidget/ScrollingWidget';
+import Profile from '../Profile/Profile';
+import useFetchData from '../../hooks/useFetchData';
 import './Credits.scss'
-
 
 const Credits = ({idQuery, mediatype, setTypeDetails, setIdDetails}) => {
     //Custom hook para hacer la consulta a la API
@@ -26,7 +25,7 @@ const Credits = ({idQuery, mediatype, setTypeDetails, setIdDetails}) => {
                         >
                         {
                             mediatype === 'movie' ?
-                            data?.cast?.slice(0, 12)?.map((item, index) => {
+                            data && data.cast.slice(0, 12).map((item, index) => {
                                 return <Profile
                                     key={index}
                                     id={item.id}
@@ -38,7 +37,7 @@ const Credits = ({idQuery, mediatype, setTypeDetails, setIdDetails}) => {
                                 />
                             })
                             :
-                            data?.cast?.slice(0, 12)?.map((item, index) => {
+                            data && data.cast.slice(0, 12).map((item, index) => {
                                 return <Profile
                                     key={index}
                                     id={item.id}
@@ -59,9 +58,9 @@ const Credits = ({idQuery, mediatype, setTypeDetails, setIdDetails}) => {
                         >
                         {
                             mediatype === 'tv' ?
-                            data?.crew?.filter((item) => item.jobs?.some((element) => element.job === 'Director' || element.job === 'Writer'))
-                            ?.slice(0, 12)
-                            ?.map((item, index) => {
+                            data && data.crew.filter((item) => item.jobs.some((element) => element.job === 'Director' || element.job === 'Writer'))
+                            .slice(0, 12)
+                            .map((item, index) => {
                                 return <Profile
                                     key={index}
                                     id={item.id}
@@ -74,9 +73,9 @@ const Credits = ({idQuery, mediatype, setTypeDetails, setIdDetails}) => {
                                 />
                             })
                             :
-                            data?.crew?.filter((item) => item.job === 'Director' || item.job === 'Writer')
-                            ?.slice(0, 12)
-                            ?.map((item, index) => {
+                            data && data.crew.filter((item) => item.job === 'Director' || item.job === 'Writer')
+                            .slice(0, 12)
+                            .map((item, index) => {
                                 return <Profile
                                     key={index}
                                     id={item.id}

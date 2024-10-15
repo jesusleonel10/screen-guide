@@ -1,5 +1,5 @@
-import formatDate from '../functions/formatDate'
-import Votes from './Votes'
+import formatDate from '../../functions/formatDate'
+import Votes from '../Votes/Votes'
 import { Fade } from '@mui/material'
 import './Card.scss'
 

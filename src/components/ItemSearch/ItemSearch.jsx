@@ -1,4 +1,4 @@
-import formatDateYear from "./../functions/formatDateYear";
+import formatDateYear from "./../../functions/formatDateYear";
 
 const ItemSearch = ({id, title, poster, mediaType, year, character, from, setId, setMedia, setTypeDetails, setShowDetails}) => {
 

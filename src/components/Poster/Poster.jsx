@@ -1,4 +1,4 @@
-import './../scss/InfiniteScroll.scss'
+import '../InfiniteScroll/InfiniteScroll.scss'
 import { Fade } from '@mui/material';
 
 const Poster = ({poster}) => {

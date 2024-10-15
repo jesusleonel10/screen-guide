@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import ItemContainer from './ItemContainer'
-import Loading from './Loading';
-import useFetchData from '../hooks/useFetchData';
+import ItemContainer from '../ItemContainer/ItemContainer'
+import Loading from '../Loading/Loading';
+import useFetchData from '../../hooks/useFetchData';
 import './Filmography.scss'
-
 
 const Filmography = ({idDetails, mediaDetails, setTypeDetails, setIdDetails, setMediaDetails}) => {
     //Estado para guardar la nueva consulta
@@ -20,8 +19,8 @@ const Filmography = ({idDetails, mediaDetails, setTypeDetails, setIdDetails, set
             .filter((item) => !item.genre_ids
             .some((element) => element === 10767 || element === 10763 || element === 10764))
             
-            const movieslistForActor = onlyCastNoEpisodes?.filter((item) => item.media_type === 'movie').sort((a, b) => b.popularity - a.popularity)
-            const seriesListForActor = onlyCastNoEpisodes?.filter((item) => item.media_type === 'tv').sort((a, b) => b.popularity - a.popularity)
+            const movieslistForActor = onlyCastNoEpisodes && onlyCastNoEpisodes.filter((item) => item.media_type === 'movie').sort((a, b) => b.popularity - a.popularity)
+            const seriesListForActor = onlyCastNoEpisodes && onlyCastNoEpisodes.filter((item) => item.media_type === 'tv').sort((a, b) => b.popularity - a.popularity)
             
             //Separo por movies y series
             setOnlyMovies(movieslistForActor)

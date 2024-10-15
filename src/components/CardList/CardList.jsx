@@ -1,12 +1,12 @@
 import {useState, Fragment, useEffect} from 'react'
 import { useLocation } from 'react-router-dom';
-import Filters from "./Filters";
-import Info from './Info';
-import Card from "./Card"
-import Modal from './Modal';
-import useFetchData from '../hooks/useFetchData';
-import formatLocation from '../functions/formatLocation';
-import Pages from './Pages';
+import Filters from "../Filters/Filters";
+import Info from '../Info/Info';
+import Card from "../Card/Card"
+import Modal from '../Modal/Modal';
+import useFetchData from '../../hooks/useFetchData';
+import formatLocation from '../../functions/formatLocation';
+import Pages from '../Pages/Pages';
 
 import styled from 'styled-components';
 import './CardList.scss'
@@ -47,13 +47,13 @@ const CardList = () => {
                 <div className='cards-container'>
                 { 
                 loading ?
-                    arrCardLoading?.map((item) => (
+                    (arrCardLoading.map((item) => (
                             <Fragment key={item}>
                                 <CardLoading />
                             </Fragment>
-                        ))
+                        )))
                 :
-                    data?.results?.map((element) => {
+                    (data.results.map((element) => {
                         return <Card
                             id={element.id}
                             key={element.id}
@@ -67,7 +67,7 @@ const CardList = () => {
                             setId={setId}
                             setModal={setModal}
                         />
-                        })
+                        }))
                 }
                 </div>
                 <Pages 
@@ -85,7 +85,7 @@ const CardList = () => {
                         type={media}
                     />
                 </Modal>
-            }
+             }
         </>
     );
 }
